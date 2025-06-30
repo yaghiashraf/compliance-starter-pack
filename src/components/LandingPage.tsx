@@ -1,0 +1,647 @@
+import { motion } from "framer-motion"
+import { Shield, Download, FileCheck2, Zap, Globe, Lock, ArrowRight, Star, CheckCircle, AlertTriangle, DollarSign, Scale, Gavel, Users, TrendingDown } from "lucide-react"
+import { Button } from "./ui/button"
+
+interface LandingPageProps {
+  onGetStarted: () => void
+}
+
+export function LandingPage({ onGetStarted }: LandingPageProps) {
+  const features = [
+    {
+      icon: Shield,
+      title: "GDPR & CCPA Ready",
+      description: "Templates covering major privacy laws including GDPR, CCPA, and more."
+    },
+    {
+      icon: Zap,
+      title: "Instant Generation",
+      description: "Generate your complete compliance pack in under 30 seconds."
+    },
+    {
+      icon: Globe,
+      title: "Multi-Jurisdiction",
+      description: "Supports US, EU, UK, Canada, and Australia legal frameworks."
+    },
+    {
+      icon: Lock,
+      title: "Privacy First",
+      description: "Everything runs in your browser. No data sent to servers."
+    },
+    {
+      icon: Download,
+      title: "Ready to Deploy",
+      description: "Get HTML, PDF, JavaScript files with installation guides."
+    },
+    {
+      icon: FileCheck2,
+      title: "Professional Quality",
+      description: "Clean, professional templates that look great on any website."
+    }
+  ]
+
+  const includes = [
+    "Privacy Policy & Terms of Service (HTML + PDF)",
+    "Cookie Consent Banner (2KB JavaScript)",
+    "Accessibility Widget (Font & Contrast Controls)",
+    "Installation Guide with Copy-Paste Code",
+    "Mobile-Responsive Design"
+  ]
+
+  const painPoints = [
+    {
+      icon: DollarSign,
+      title: "GDPR Fines: Up to €20M",
+      description: "The EU has issued over €1.6 billion in GDPR fines since 2018. Even small businesses face penalties starting at €10,000.",
+      severity: "critical"
+    },
+    {
+      icon: Scale,
+      title: "CCPA Violations: $7,500 Each",
+      description: "California's privacy law fines businesses $2,500-$7,500 per violation. With millions of website visitors, costs add up fast.",
+      severity: "high"
+    },
+    {
+      icon: Gavel,
+      title: "Class Action Lawsuits",
+      description: "Lack of proper privacy policies opens businesses to expensive class action lawsuits that can cost millions in settlements.",
+      severity: "high"
+    },
+    {
+      icon: Users,
+      title: "Customer Trust Loss",
+      description: "86% of consumers are concerned about data privacy. Websites without clear policies lose credibility and sales.",
+      severity: "medium"
+    },
+    {
+      icon: TrendingDown,
+      title: "Business Closure Risk",
+      description: "Regulatory penalties can force small businesses to shut down. Don't let compliance issues end your business dreams.",
+      severity: "critical"
+    },
+    {
+      icon: AlertTriangle,
+      title: "Website Blocking",
+      description: "Many EU businesses block visitors from non-compliant websites, cutting your market reach by 27% instantly.",
+      severity: "medium"
+    }
+  ]
+
+  const businessImpacts = [
+    {
+      stat: "€1.6B+",
+      label: "GDPR fines issued since 2018",
+      description: "Don't become another statistic"
+    },
+    {
+      stat: "86%",
+      label: "of consumers care about data privacy",
+      description: "Missing policies = lost customers"
+    },
+    {
+      stat: "72%",
+      label: "of businesses lack proper compliance",
+      description: "Get ahead of your competition"
+    },
+    {
+      stat: "30 days",
+      label: "average time to implement manually",
+      description: "We do it in 30 seconds"
+    }
+  ]
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-[#0d1117] via-[#161b22] to-[#0d1117]">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden pt-20 pb-16 sm:pt-32 sm:pb-24">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 opacity-50" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
+          >
+            <div className="flex justify-center mb-8">
+              <div className="p-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl shadow-2xl animate-float">
+                <Shield className="w-12 h-12 text-white" />
+              </div>
+            </div>
+            
+            <h1 className="text-5xl sm:text-7xl font-bold tracking-tight mb-6">
+              <span className="gradient-text">Compliance</span>
+              <br />
+              <span className="text-white">Made Simple</span>
+            </h1>
+            
+            <p className="text-xl sm:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+              Generate a complete website compliance bundle in seconds.<br />
+              <span className="text-blue-400 font-semibold">GDPR</span>, 
+              <span className="text-purple-400 font-semibold"> CCPA</span>, and privacy-ready.
+            </p>
+            
+            <div className="flex flex-col items-center mb-8">
+              <div className="mb-4 text-center">
+                <div className="text-4xl font-bold text-white mb-2">
+                  <span className="text-2xl text-gray-400 line-through mr-2">$49.99</span>
+                  <span className="text-green-400">$6.99</span>
+                </div>
+                <p className="text-gray-400">One-time payment • Instant access • No subscriptions</p>
+              </div>
+              
+              <Button
+                onClick={onGetStarted}
+                size="lg"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group mb-4"
+              >
+                Get Your Compliance Pack - $6.99
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+              
+              <div className="flex items-center space-x-2 text-sm text-gray-400">
+                <CheckCircle className="w-4 h-4 text-green-400" />
+                <span>Secure payment • Instant download • 30-day guarantee</span>
+              </div>
+            </div>
+            
+            <div className="flex justify-center items-center space-x-8 text-sm text-gray-500">
+              <div className="flex items-center space-x-2">
+                <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                <span>One-Time Payment</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Shield className="w-4 h-4 text-green-400" />
+                <span>Privacy First</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Zap className="w-4 h-4 text-blue-400" />
+                <span>Instant Results</span>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20 bg-[#161b22] relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              Everything You Need for Compliance
+            </h2>
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+              Professional-grade compliance tools that work out of the box
+            </p>
+          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {features.map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="glass rounded-xl p-6 hover:bg-white/10 transition-all duration-300 group"
+              >
+                <div className="flex items-center mb-4">
+                  <div className="p-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg group-hover:scale-110 transition-transform duration-300">
+                    <feature.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="ml-3 text-lg font-semibold text-white">{feature.title}</h3>
+                </div>
+                <p className="text-gray-400 leading-relaxed">{feature.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pain Points Section */}
+      <section id="pain-points" className="py-20 bg-gradient-to-r from-red-900/20 to-orange-900/20 relative">
+        <div className="absolute inset-0 bg-[#0d1117]/80" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <div className="inline-flex items-center justify-center mb-4">
+              <AlertTriangle className="w-12 h-12 text-red-400 animate-pulse" />
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              The Hidden Costs of Non-Compliance
+            </h2>
+            <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+              Every day without proper compliance policies puts your business at risk. 
+              Here's what you're risking by waiting:
+            </p>
+          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {painPoints.map((point, index) => (
+              <motion.div
+                key={point.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className={`glass rounded-xl p-6 border-l-4 ${
+                  point.severity === 'critical' ? 'border-red-500 bg-red-500/5' :
+                  point.severity === 'high' ? 'border-orange-500 bg-orange-500/5' :
+                  'border-yellow-500 bg-yellow-500/5'
+                }`}
+              >
+                <div className="flex items-center mb-4">
+                  <div className={`p-3 rounded-lg ${
+                    point.severity === 'critical' ? 'bg-red-500/20' :
+                    point.severity === 'high' ? 'bg-orange-500/20' :
+                    'bg-yellow-500/20'
+                  }`}>
+                    <point.icon className={`w-6 h-6 ${
+                      point.severity === 'critical' ? 'text-red-400' :
+                      point.severity === 'high' ? 'text-orange-400' :
+                      'text-yellow-400'
+                    }`} />
+                  </div>
+                  <h3 className="ml-3 text-lg font-semibold text-white">{point.title}</h3>
+                </div>
+                <p className="text-gray-300 leading-relaxed">{point.description}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mt-16"
+          >
+            <div className="glass rounded-2xl p-8 max-w-2xl mx-auto">
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Don't Risk Your Business
+              </h3>
+              <p className="text-gray-300 mb-6">
+                Generate your compliance pack in 30 seconds and protect your business from devastating fines and lawsuits.
+              </p>
+              <Button
+                onClick={onGetStarted}
+                size="lg"
+                className="bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white px-8 py-3 rounded-xl font-semibold"
+              >
+                Protect My Business Now
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Business Impact Stats */}
+      <section id="stats" className="py-20 bg-[#161b22]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              The Numbers Don't Lie
+            </h2>
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+              Real statistics that show why compliance can't wait
+            </p>
+          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {businessImpacts.map((impact, index) => (
+              <motion.div
+                key={impact.stat}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                viewport={{ once: true }}
+                className="text-center"
+              >
+                <div className="glass rounded-xl p-6 hover:bg-white/5 transition-all duration-300">
+                  <div className="text-4xl sm:text-5xl font-bold gradient-text mb-2">
+                    {impact.stat}
+                  </div>
+                  <div className="text-lg font-semibold text-white mb-2">
+                    {impact.label}
+                  </div>
+                  <div className="text-sm text-gray-400">
+                    {impact.description}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* What's Included Section */}
+      <section id="features" className="py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              What's in Your Starter Pack?
+            </h2>
+            <p className="text-lg text-gray-400">
+              A complete bundle ready for immediate deployment
+            </p>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="glass rounded-2xl p-8"
+          >
+            <div className="space-y-4">
+              {includes.map((item, index) => (
+                <motion.div
+                  key={item}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="flex items-center space-x-3"
+                >
+                  <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0" />
+                  <span className="text-gray-300">{item}</span>
+                </motion.div>
+              ))}
+            </div>
+            
+            <div className="mt-8 pt-8 border-t border-gray-700">
+              <div className="flex flex-col sm:flex-row justify-between items-center">
+                <div>
+                  <p className="text-2xl font-bold text-white">Ready in 30 seconds</p>
+                  <p className="text-gray-400">Complete compliance bundle</p>
+                </div>
+                <Button
+                  onClick={onGetStarted}
+                  size="lg"
+                  className="mt-4 sm:mt-0 bg-gradient-to-r from-green-500 to-blue-600 hover:from-green-600 hover:to-blue-700 text-white px-8 py-3 rounded-xl font-semibold"
+                >
+                  Get Pack for $6.99
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-blue-600/20 to-purple-600/20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+              Start Your Compliance Journey Today
+            </h2>
+            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+              Join thousands of businesses who trust our compliance tools. 
+              Generate your starter pack in under a minute.
+            </p>
+            <Button
+              onClick={onGetStarted}
+              size="lg"
+              className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-4 text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              Get Your Pack for $6.99
+            </Button>
+            <p className="mt-4 text-sm text-gray-400">
+              Secure payment • Instant download • 30-day money-back guarantee
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-[#0d1117] border-t border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {/* Company Info */}
+            <div className="md:col-span-2">
+              <div className="flex items-center mb-4">
+                <Shield className="w-8 h-8 text-blue-500 mr-2" />
+                <h3 className="text-xl font-bold text-white">Compliance Starter Pack</h3>
+              </div>
+              <p className="text-gray-400 mb-4 max-w-md">
+                Instant compliance solutions for small businesses. Generate professional 
+                privacy policies, cookie banners, and accessibility tools in seconds for just $6.99.
+              </p>
+              <div className="flex space-x-4">
+                <div className="flex items-center space-x-2">
+                  <Shield className="w-4 h-4 text-green-400" />
+                  <span className="text-sm text-gray-400">GDPR Compliant</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Lock className="w-4 h-4 text-blue-400" />
+                  <span className="text-sm text-gray-400">Privacy First</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
+              <ul className="space-y-2">
+                <li>
+                  <button
+                    onClick={onGetStarted}
+                    className="text-gray-400 hover:text-white transition-colors text-left"
+                  >
+                    Generate Pack
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}
+                    className="text-gray-400 hover:text-white transition-colors text-left"
+                  >
+                    Features
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => document.getElementById('pain-points')?.scrollIntoView({ behavior: 'smooth' })}
+                    className="text-gray-400 hover:text-white transition-colors text-left"
+                  >
+                    Why Compliance Matters
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => document.getElementById('stats')?.scrollIntoView({ behavior: 'smooth' })}
+                    className="text-gray-400 hover:text-white transition-colors text-left"
+                  >
+                    Statistics
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            {/* Legal */}
+            <div>
+              <h4 className="text-lg font-semibold text-white mb-4">Legal</h4>
+              <ul className="space-y-2">
+                <li>
+                  <button 
+                    onClick={() => {
+                      const privacyContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - Compliance Starter Pack</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; max-width: 800px; margin: 2rem auto; padding: 1rem; line-height: 1.6; }
+    h1 { color: #333; border-bottom: 2px solid #007acc; padding-bottom: 0.5rem; }
+    h2 { color: #555; margin-top: 2rem; }
+    ul { margin-left: 1.5rem; }
+    li { margin-bottom: 0.5rem; }
+    strong { color: #007acc; }
+  </style>
+</head>
+<body>
+  <h1>Privacy Policy - Compliance Starter Pack</h1>
+  <p><strong>Effective Date:</strong> ${new Date().toLocaleDateString()}</p>
+  
+  <h2>What We Do</h2>
+  <p>Compliance Starter Pack is a paid service ($6.99) that generates privacy policies and compliance documents for small businesses. All document processing happens in your browser - we don't collect, store, or transmit any of your business information.</p>
+  
+  <h2>Information We Don't Collect</h2>
+  <p>This tool runs entirely in your browser. We don't have servers that store your data. When you generate your compliance pack:</p>
+  <ul>
+    <li>Your business information stays on your device</li>
+    <li>No data is sent to our servers</li>
+    <li>No cookies track your usage</li>
+    <li>No analytics monitor your activity</li>
+  </ul>
+  
+  <h2>Third-Party Services</h2>
+  <p>This website may be hosted on platforms like Netlify or Vercel, which may collect basic analytics like page views and geographic regions for infrastructure purposes.</p>
+  
+  <h2>Contact</h2>
+  <p>For questions about this privacy policy: <a href="mailto:legal@compliancestarterpack.com">legal@compliancestarterpack.com</a></p>
+</body>
+</html>`;
+                      const newWindow = window.open('', '_blank');
+                      if (newWindow) {
+                        newWindow.document.write(privacyContent);
+                        newWindow.document.close();
+                      }
+                    }}
+                    className="text-gray-400 hover:text-white transition-colors text-left"
+                  >
+                    Privacy Policy
+                  </button>
+                </li>
+                <li>
+                  <button 
+                    onClick={() => {
+                      const termsContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service - Compliance Starter Pack</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; max-width: 800px; margin: 2rem auto; padding: 1rem; line-height: 1.6; }
+    h1 { color: #333; border-bottom: 2px solid #007acc; padding-bottom: 0.5rem; }
+    h2 { color: #555; margin-top: 2rem; }
+    strong { color: #007acc; }
+    .important { background: #fff3cd; border-left: 4px solid #ffc107; padding: 1rem; margin: 1rem 0; }
+  </style>
+</head>
+<body>
+  <h1>Terms of Service - Compliance Starter Pack</h1>
+  <p><strong>Effective Date:</strong> ${new Date().toLocaleDateString()}</p>
+  
+  <h2>Acceptance of Terms</h2>
+  <p>By using Compliance Starter Pack, you agree to these terms.</p>
+  
+  <h2>Description of Service</h2>
+  <p>Compliance Starter Pack is a paid service ($6.99) that generates basic compliance documents for websites. The generated documents are templates and may not cover all legal requirements for your specific situation.</p>
+  
+  <h2>Disclaimer</h2>
+  <div class="important">
+    <p><strong>Important:</strong> The documents generated by this tool are basic templates and are not a substitute for professional legal advice. You are responsible for ensuring your website complies with all applicable laws and regulations.</p>
+  </div>
+  
+  <h2>Limitation of Liability</h2>
+  <p>This tool is provided "as is" without warranties. We are not liable for any damages arising from your use of the generated documents.</p>
+  
+  <h2>Payment and Refunds</h2>
+  <p>This service costs $6.99 for a one-time compliance pack generation. All payments are processed through Stripe. We offer a 30-day money-back guarantee if you're not satisfied with the generated documents.</p>
+  
+  <h2>Contact</h2>
+  <p>For questions: <a href="mailto:legal@compliancestarterpack.com">legal@compliancestarterpack.com</a></p>
+</body>
+</html>`;
+                      const newWindow = window.open('', '_blank');
+                      if (newWindow) {
+                        newWindow.document.write(termsContent);
+                        newWindow.document.close();
+                      }
+                    }}
+                    className="text-gray-400 hover:text-white transition-colors text-left"
+                  >
+                    Terms of Service
+                  </button>
+                </li>
+                <li>
+                  <span className="text-gray-500 text-sm">
+                    Generated by our own tool! 🎉
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-t border-gray-800 mt-8 pt-8">
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <div className="text-gray-400 text-sm mb-4 md:mb-0">
+                © {new Date().getFullYear()} Compliance Starter Pack. Tools for small businesses.
+              </div>
+              <div className="flex items-center space-x-4 text-sm text-gray-400">
+                <span>🛡️ Privacy-First</span>
+                <span>🚀 No Signup Required</span>
+                <span>⚡ Works Offline</span>
+              </div>
+            </div>
+            <div className="mt-4 text-left">
+              <p className="text-xs text-gray-500">
+                <strong>Legal Disclaimer:</strong> This tool generates basic compliance templates and is not a substitute for professional legal advice. You are responsible for ensuring your website complies with all applicable laws and regulations for your specific business and jurisdiction.
+              </p>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+}

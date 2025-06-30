@@ -1,0 +1,28 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with rounded corners -->
+  <rect width="256" height="256" rx="48" fill="#1a1a2e"/>
+  
+  <!-- Main shield container -->
+  <g transform="translate(32, 32)">
+    <!-- Shield shape -->
+    <path d="M96 16L24 48V80C24 128 56 164 96 176C136 164 168 128 168 80V48L96 16Z" fill="#4f46e5" stroke="#6366f1" stroke-width="2"/>
+    
+    <!-- Inner glow effect -->
+    <path d="M96 24L32 52V76C32 116 60 148 96 160C132 148 160 116 160 76V52L96 24Z" fill="url(#innerGlow)" opacity="0.3"/>
+    
+    <!-- Checkmark -->
+    <path d="M72 96L88 112L120 80" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Small highlight dots for polish -->
+    <circle cx="80" cy="60" r="3" fill="white" opacity="0.6"/>
+    <circle cx="112" cy="60" r="2" fill="white" opacity="0.4"/>
+  </g>
+  
+  <!-- Gradient definitions -->
+  <defs>
+    <radialGradient id="innerGlow" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#4f46e5" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>
