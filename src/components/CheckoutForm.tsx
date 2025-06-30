@@ -1,10 +1,14 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import { CreditCard, Lock, ArrowLeft, Shield } from "lucide-react"
+import { loadStripe } from "@stripe/stripe-js"
+import { Elements, CardElement, useStripe, useElements } from "@stripe/react-stripe-js"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
 import { FormState } from "../App"
+
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY!)
 
 interface CheckoutFormProps {
   formState: FormState
@@ -12,45 +16,105 @@ interface CheckoutFormProps {
   onCancel: () => void
 }
 
-export function CheckoutForm({ formState, onPaymentSuccess, onCancel }: CheckoutFormProps) {
+const CheckoutFormContent = ({ formState, onPaymentSuccess, onCancel }: CheckoutFormProps) => {
+  const stripe = useStripe()
+  const elements = useElements()
   const [isProcessing, setIsProcessing] = useState(false)
-  const [cardNumber, setCardNumber] = useState("")
-  const [expiry, setExpiry] = useState("")
-  const [cvc, setCvc] = useState("")
-  const [email, setEmail] = useState("")
+  const [email, setEmail] = useState(formState.email || "")
+  const [clientSecret, setClientSecret] = useState("")
+  const [error, setError] = useState("")
+
+  // Create payment intent when component mounts
+  useEffect(() => {
+    const createPaymentIntent = async () => {
+      try {
+        const response = await fetch("/.netlify/functions/create-payment-intent", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email || formState.email,
+            businessName: formState.businessName,
+          }),
+        })
+
+        if (!response.ok) {
+          throw new Error("Failed to create payment intent")
+        }
+
+        const { clientSecret } = await response.json()
+        setClientSecret(clientSecret)
+      } catch (err) {
+        setError("Failed to initialize payment. Please try again.")
+        console.error("Payment intent creation failed:", err)
+      }
+    }
+
+    createPaymentIntent()
+  }, [formState.businessName, formState.email, email])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    if (!stripe || !elements || !clientSecret) {
+      setError("Payment system not ready. Please wait a moment and try again.")
+      return
+    }
+
     setIsProcessing(true)
-    
-    // Simulate payment processing
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
-    // For demo purposes, always succeed
-    onPaymentSuccess()
+    setError("")
+
+    const cardElement = elements.getElement(CardElement)
+    if (!cardElement) {
+      setError("Card information not found. Please refresh and try again.")
+      setIsProcessing(false)
+      return
+    }
+
+    try {
+      const { error: paymentError, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: cardElement,
+          billing_details: {
+            email: email,
+            name: formState.businessName,
+          },
+        },
+      })
+
+      if (paymentError) {
+        setError(paymentError.message || "Payment failed. Please try again.")
+        setIsProcessing(false)
+      } else if (paymentIntent && paymentIntent.status === "succeeded") {
+        // Payment successful!
+        onPaymentSuccess()
+      }
+    } catch (err) {
+      setError("An unexpected error occurred. Please try again.")
+      setIsProcessing(false)
+      console.error("Payment confirmation failed:", err)
+    }
   }
 
-  const formatCardNumber = (value: string) => {
-    const v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '')
-    const matches = v.match(/\d{4,16}/g)
-    const match = matches && matches[0] || ''
-    const parts = []
-    for (let i = 0, len = match.length; i < len; i += 4) {
-      parts.push(match.substring(i, i + 4))
-    }
-    if (parts.length) {
-      return parts.join(' ')
-    } else {
-      return v
-    }
-  }
-
-  const formatExpiry = (value: string) => {
-    const v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '')
-    if (v.length >= 2) {
-      return v.substring(0, 2) + '/' + v.substring(2, 4)
-    }
-    return v
+  const cardElementOptions = {
+    style: {
+      base: {
+        fontSize: "16px",
+        color: "#ffffff",
+        backgroundColor: "#0d1117",
+        fontFamily: "system-ui, sans-serif",
+        "::placeholder": {
+          color: "#6b7280",
+        },
+        iconColor: "#6b7280",
+      },
+      invalid: {
+        color: "#ef4444",
+        iconColor: "#ef4444",
+      },
+    },
+    hidePostalCode: true,
   }
 
   return (
@@ -118,47 +182,18 @@ export function CheckoutForm({ formState, onPaymentSuccess, onCancel }: Checkout
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="cardNumber">Card Number</Label>
-              <div className="relative">
-                <Input
-                  id="cardNumber"
-                  placeholder="1234 5678 9012 3456"
-                  value={cardNumber}
-                  onChange={(e) => setCardNumber(formatCardNumber(e.target.value))}
-                  maxLength={19}
-                  required
-                  disabled={isProcessing}
-                />
-                <CreditCard className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <Label>Card Details</Label>
+              <div className="bg-[#0d1117] border border-gray-600 rounded-lg p-4">
+                <CardElement options={cardElementOptions} />
               </div>
+              <p className="text-xs text-gray-500">Enter your card number, expiry date, and CVC</p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="expiry">Expiry Date</Label>
-                <Input
-                  id="expiry"
-                  placeholder="MM/YY"
-                  value={expiry}
-                  onChange={(e) => setExpiry(formatExpiry(e.target.value))}
-                  maxLength={5}
-                  required
-                  disabled={isProcessing}
-                />
+            {error && (
+              <div className="bg-red-900/20 border border-red-700 rounded-lg p-3 text-red-300 text-sm">
+                {error}
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="cvc">CVC</Label>
-                <Input
-                  id="cvc"
-                  placeholder="123"
-                  value={cvc}
-                  onChange={(e) => setCvc(e.target.value.replace(/[^0-9]/g, '').slice(0, 3))}
-                  maxLength={3}
-                  required
-                  disabled={isProcessing}
-                />
-              </div>
-            </div>
+            )}
 
             <div className="flex items-center space-x-2 text-sm text-gray-400 bg-[#0d1117] p-3 rounded-lg">
               <Lock className="w-4 h-4 text-green-400" />
@@ -168,7 +203,7 @@ export function CheckoutForm({ formState, onPaymentSuccess, onCancel }: Checkout
             <Button
               type="submit"
               className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 text-lg font-semibold"
-              disabled={isProcessing}
+              disabled={isProcessing || !stripe || !clientSecret}
             >
               {isProcessing ? (
                 <div className="flex items-center space-x-2">
@@ -194,10 +229,18 @@ export function CheckoutForm({ formState, onPaymentSuccess, onCancel }: Checkout
         
         <div className="mt-6 text-center">
           <p className="text-xs text-gray-500">
-            🔒 Secured by industry-standard encryption • 💳 All major cards accepted
+            🔒 Secured by Stripe • 💳 All major cards accepted • ⚡ Instant download
           </p>
         </div>
       </div>
     </div>
+  )
+}
+
+export function CheckoutForm(props: CheckoutFormProps) {
+  return (
+    <Elements stripe={stripePromise}>
+      <CheckoutFormContent {...props} />
+    </Elements>
   )
 }
