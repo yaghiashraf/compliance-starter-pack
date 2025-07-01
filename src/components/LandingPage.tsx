@@ -1,6 +1,7 @@
 import { motion } from "framer-motion"
 import { Shield, Download, FileCheck2, Zap, Globe, Lock, ArrowRight, Star, CheckCircle, AlertTriangle, DollarSign, Scale, Gavel, Users, TrendingDown, Package, FileText, Code, BookOpen, Clock } from "lucide-react"
 import { Button } from "./ui/button"
+import { ComplianceScanner } from "./ComplianceScanner"
 
 interface LandingPageProps {
   onGetStarted: () => void
@@ -182,6 +183,9 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
           </motion.div>
         </div>
       </section>
+
+      {/* Compliance Scanner */}
+      <ComplianceScanner onGetStarted={onGetStarted} />
 
       {/* Visual Proof Section */}
       <section className="py-16 bg-[#0d1117] relative">
