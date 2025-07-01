@@ -55,7 +55,15 @@ function App() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Go to payment instead of generating directly
+    
+    // Normalize website URL before proceeding
+    let normalizedUrl = formState.websiteUrl.trim();
+    if (normalizedUrl && !normalizedUrl.startsWith('http://') && !normalizedUrl.startsWith('https://')) {
+      normalizedUrl = `https://${normalizedUrl}`;
+      setFormState(prev => ({ ...prev, websiteUrl: normalizedUrl }));
+    }
+    
+    // Go to payment
     setAppState("payment");
   };
 

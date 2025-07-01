@@ -55,12 +55,15 @@ export const ComplianceForm = ({ formState, onFormChange, onSubmit }: Compliance
           <Input
             id="websiteUrl"
             name="websiteUrl"
-            type="url"
-            placeholder="https://example.com"
+            type="text"
+            placeholder="example.com or https://example.com"
             value={formState.websiteUrl}
             onChange={onFormChange}
             required
           />
+          <p className="text-xs text-gray-500">
+            Enter your domain (we'll add https:// if needed)
+          </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div className="space-y-2">
