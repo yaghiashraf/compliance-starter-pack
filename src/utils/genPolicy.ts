@@ -89,7 +89,7 @@ const getJurisdictionSpecifics = (jurisdiction: string) => {
 };
 
 export const genPolicyHtml = (formData: FormState): string => {
-    const { businessName, websiteUrl, jurisdiction, email } = formData;
+    const { businessName, websiteUrl, jurisdiction } = formData;
     const effectiveDate = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     const { name: jurisdictionName, dataController, userRights, governingLaw, dataRetention, legalBasis } = getJurisdictionSpecifics(jurisdiction);
 
@@ -100,6 +100,31 @@ export const genPolicyHtml = (formData: FormState): string => {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy & Terms of Service - ${businessName}</title>
+    
+    <!-- Open Graph / Social Media Sharing -->
+    <meta property="og:title" content="Privacy Policy & Terms of Service - ${businessName}">
+    <meta property="og:description" content="Our privacy policy and terms of service outline how we protect and handle your data at ${businessName}.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="${websiteUrl}/policy.html">
+    <meta property="og:site_name" content="${businessName}">
+    <meta property="og:image" content="${websiteUrl}/favicon-512.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Privacy Policy - ${businessName}">
+    <meta name="twitter:description" content="Learn how we protect your privacy and data at ${businessName}.">
+    <meta name="twitter:image" content="${websiteUrl}/favicon-512.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- SEO -->
+    <meta name="description" content="Privacy policy and terms of service for ${businessName}. Learn how we collect, use, and protect your personal information.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="${websiteUrl}/policy.html">
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -114,6 +139,25 @@ export const genPolicyHtml = (formData: FormState): string => {
             border-bottom: 1px solid #eee;
             padding-bottom: 0.5rem;
         }
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem 0;
+            border-bottom: 2px solid #eee;
+        }
+        .business-logo {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
         h1 { font-size: 2em; }
         h2 { font-size: 1.5em; }
         a { color: #007bff; }
@@ -123,8 +167,14 @@ export const genPolicyHtml = (formData: FormState): string => {
 </head>
 <body>
     <div class="container">
-        <h1>Privacy Policy & Terms of Service for ${businessName}</h1>
-        <p class="last-updated">Last Updated: ${effectiveDate}</p>
+        <div class="header">
+            <div class="business-logo">
+                ${businessName.split(' ').map(word => word.charAt(0).toUpperCase()).slice(0, 2).join('')}
+            </div>
+            <h1>Privacy Policy & Terms of Service</h1>
+            <h2 style="border: none; color: #666; font-size: 1.2em; margin-top: 0;">${businessName}</h2>
+            <p class="last-updated">Last Updated: ${effectiveDate}</p>
+        </div>
 
         <h2>Introduction</h2>
         <p>Welcome to ${businessName}. We operate the website located at <a href="${websiteUrl}">${websiteUrl}</a>. This document serves as our combined Privacy Policy and Terms of Service. It governs your access to and use of our services. By using our website, you agree to be bound by these terms and consent to our privacy practices.</p>
@@ -152,7 +202,7 @@ export const genPolicyHtml = (formData: FormState): string => {
         <h2>4. Your Rights (${jurisdictionName})</h2>
         <p>${businessName} is the ${dataController}. You have certain rights regarding your personal data. These include:</p>
         ${userRights}
-        <p>If you would like to exercise any of these rights, please contact us at <a href="mailto:${email}">${email}</a>.</p>
+        <p>If you would like to exercise any of these rights, please contact us at: contact@${businessName.toLowerCase().replace(/[^a-z0-9]/g, '')}.com</p>
 
         <h2>5. Legal Basis for Processing</h2>
         <p>${legalBasis}</p>
@@ -191,7 +241,8 @@ export const genPolicyHtml = (formData: FormState): string => {
         <p>We may update our Privacy Policy and Terms of Service from time to time. We will notify you of any changes by posting the new policy on this page. You are advised to review this policy periodically for any changes.</p>
 
         <h2>Contact Us</h2>
-        <p>If you have any questions about this Privacy Policy or Terms of Service, please contact us by email: <a href="mailto:${email}">${email}</a>.</p>
+        <p>If you have any questions about this Privacy Policy or Terms of Service, please contact us by email: contact@${businessName.toLowerCase().replace(/[^a-z0-9]/g, '')}.com</p>
+        <p class="note"><strong>Note:</strong> Please update this contact email with your actual business email address.</p>
     </div>
 </body>
 </html>

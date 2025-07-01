@@ -42,12 +42,13 @@ const genReadmeHtml = (formData: FormState): string => {
     <div class="card">
         <h2>What's in this ZIP file?</h2>
         <ul>
-            <li><strong>policy.html</strong>: Your Privacy Policy and Terms of Service page.</li>
+            <li><strong>policy.html</strong>: Your Privacy Policy and Terms of Service page with business branding.</li>
             <li><strong>policy.pdf</strong>: A PDF version of your policies.</li>
             <li><strong>cookie.js</strong>: A script for a simple cookie consent banner.</li>
             <li><strong>accessibility.js</strong>: A script for a basic accessibility widget.</li>
             <li><strong>readme_install.html</strong>: These installation instructions.</li>
         </ul>
+        <p class="note"><strong>Note:</strong> The policy.html file includes Open Graph meta tags for better social media sharing and placeholder favicon links that you should update with your actual business logo.</p>
     </div>
 
     <div class="card">
@@ -81,6 +82,19 @@ const genReadmeHtml = (formData: FormState): string => {
         <pre><code>&lt;main id="main-content"&gt;
   &lt;!-- Your main page content goes here --&gt;
 &lt;/main&gt;</code></pre>
+    </div>
+
+    <div class="card">
+        <h2>Step 5: Add Your Business Logo/Favicon (Recommended)</h2>
+        <p>For better branding and social sharing, add your business favicon and logo files to your website root:</p>
+        <ul>
+            <li><code>favicon.ico</code> - Main favicon (16x16 or 32x32 px)</li>
+            <li><code>favicon-32.png</code> - 32x32 PNG favicon</li>
+            <li><code>favicon-16.png</code> - 16x16 PNG favicon</li>
+            <li><code>apple-touch-icon.png</code> - 180x180 Apple touch icon</li>
+            <li><code>favicon-512.png</code> - 512x512 PNG for social sharing</li>
+        </ul>
+        <p class="note">The policy.html file already includes the proper meta tags for these files. When someone shares your privacy policy, it will show your business logo and proper branding.</p>
     </div>
 
     <p class="note"><strong>Disclaimer:</strong> This starter pack provides a basic template and is not a substitute for professional legal advice. You are responsible for ensuring your website complies with all applicable laws and regulations for your jurisdiction and business type.</p>

@@ -383,13 +383,38 @@ https://github.com/nodeca/pako/blob/main/LICENSE
                     <p>&bull; <strong>The right to correct</strong> inaccurate personal information.</p>
                     <p>&bull; <strong>The right to limit</strong> the use and disclosure of sensitive personal information.</p>
                     <p>&bull; <strong>The right to equal service</strong> and price, even if you exercise your privacy rights (non-discrimination).</p>
-                `,governingLaw:"the laws of the State of Delaware, United States, without regard to its conflict of law provisions.",dataRetention:"We retain personal information for as long as necessary to provide our services, comply with legal obligations, resolve disputes, and enforce our agreements.",legalBasis:"We process personal information based on your consent, performance of a contract, compliance with legal obligations, protection of vital interests, performance of a task carried out in the public interest, or legitimate interests."}}},F6=e=>{const{businessName:t,websiteUrl:r,jurisdiction:n,email:i}=e,o=new Date().toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"}),{name:a,dataController:s,userRights:u,governingLaw:l,dataRetention:c,legalBasis:f}=A6(n);return`
+                `,governingLaw:"the laws of the State of Delaware, United States, without regard to its conflict of law provisions.",dataRetention:"We retain personal information for as long as necessary to provide our services, comply with legal obligations, resolve disputes, and enforce our agreements.",legalBasis:"We process personal information based on your consent, performance of a contract, compliance with legal obligations, protection of vital interests, performance of a task carried out in the public interest, or legitimate interests."}}},F6=e=>{const{businessName:t,websiteUrl:r,jurisdiction:n}=e,i=new Date().toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"}),{name:o,dataController:a,userRights:s,governingLaw:u,dataRetention:l,legalBasis:c}=A6(n);return`
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy & Terms of Service - ${t}</title>
+    
+    <!-- Open Graph / Social Media Sharing -->
+    <meta property="og:title" content="Privacy Policy & Terms of Service - ${t}">
+    <meta property="og:description" content="Our privacy policy and terms of service outline how we protect and handle your data at ${t}.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="${r}/policy.html">
+    <meta property="og:site_name" content="${t}">
+    <meta property="og:image" content="${r}/favicon-512.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Privacy Policy - ${t}">
+    <meta name="twitter:description" content="Learn how we protect your privacy and data at ${t}.">
+    <meta name="twitter:image" content="${r}/favicon-512.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- SEO -->
+    <meta name="description" content="Privacy policy and terms of service for ${t}. Learn how we collect, use, and protect your personal information.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="${r}/policy.html">
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -404,6 +429,25 @@ https://github.com/nodeca/pako/blob/main/LICENSE
             border-bottom: 1px solid #eee;
             padding-bottom: 0.5rem;
         }
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem 0;
+            border-bottom: 2px solid #eee;
+        }
+        .business-logo {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
         h1 { font-size: 2em; }
         h2 { font-size: 1.5em; }
         a { color: #007bff; }
@@ -413,8 +457,14 @@ https://github.com/nodeca/pako/blob/main/LICENSE
 </head>
 <body>
     <div class="container">
-        <h1>Privacy Policy & Terms of Service for ${t}</h1>
-        <p class="last-updated">Last Updated: ${o}</p>
+        <div class="header">
+            <div class="business-logo">
+                ${t.split(" ").map(f=>f.charAt(0).toUpperCase()).slice(0,2).join("")}
+            </div>
+            <h1>Privacy Policy & Terms of Service</h1>
+            <h2 style="border: none; color: #666; font-size: 1.2em; margin-top: 0;">${t}</h2>
+            <p class="last-updated">Last Updated: ${i}</p>
+        </div>
 
         <h2>Introduction</h2>
         <p>Welcome to ${t}. We operate the website located at <a href="${r}">${r}</a>. This document serves as our combined Privacy Policy and Terms of Service. It governs your access to and use of our services. By using our website, you agree to be bound by these terms and consent to our privacy practices.</p>
@@ -439,16 +489,16 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         <h2>3. Sharing Your Personal Information</h2>
         <p>We do not sell, trade, or rent your personal identification information to others. We may share generic aggregated demographic information not linked to any personal identification information regarding visitors and users with our business partners, trusted affiliates, and advertisers for the purposes outlined above.</p>
         
-        <h2>4. Your Rights (${a})</h2>
-        <p>${t} is the ${s}. You have certain rights regarding your personal data. These include:</p>
-        ${u}
-        <p>If you would like to exercise any of these rights, please contact us at <a href="mailto:${i}">${i}</a>.</p>
+        <h2>4. Your Rights (${o})</h2>
+        <p>${t} is the ${a}. You have certain rights regarding your personal data. These include:</p>
+        ${s}
+        <p>If you would like to exercise any of these rights, please contact us at: contact@${t.toLowerCase().replace(/[^a-z0-9]/g,"")}.com</p>
 
         <h2>5. Legal Basis for Processing</h2>
-        <p>${f}</p>
+        <p>${c}</p>
 
         <h2>6. Data Retention</h2>
-        <p>${c}</p>
+        <p>${l}</p>
         <p>When you place an order through the Site, we will maintain your Order Information for our records unless and until you ask us to delete this information.</p>
 
         <h2>7. International Data Transfers</h2>
@@ -475,13 +525,14 @@ https://github.com/nodeca/pako/blob/main/LICENSE
         <p>In no event shall ${t}, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the Service.</p>
 
         <h2>5. Governing Law</h2>
-        <p>These Terms shall be governed and construed in accordance with ${l}, without regard to its conflict of law provisions.</p>
+        <p>These Terms shall be governed and construed in accordance with ${u}, without regard to its conflict of law provisions.</p>
 
         <h2>Changes to This Policy</h2>
         <p>We may update our Privacy Policy and Terms of Service from time to time. We will notify you of any changes by posting the new policy on this page. You are advised to review this policy periodically for any changes.</p>
 
         <h2>Contact Us</h2>
-        <p>If you have any questions about this Privacy Policy or Terms of Service, please contact us by email: <a href="mailto:${i}">${i}</a>.</p>
+        <p>If you have any questions about this Privacy Policy or Terms of Service, please contact us by email: contact@${t.toLowerCase().replace(/[^a-z0-9]/g,"")}.com</p>
+        <p class="note"><strong>Note:</strong> Please update this contact email with your actual business email address.</p>
     </div>
 </body>
 </html>
@@ -950,12 +1001,13 @@ end`},Uw=function(){for(var e=[],t=0;t<arguments.length;t++)e[t]=arguments[t];re
     <div class="card">
         <h2>What's in this ZIP file?</h2>
         <ul>
-            <li><strong>policy.html</strong>: Your Privacy Policy and Terms of Service page.</li>
+            <li><strong>policy.html</strong>: Your Privacy Policy and Terms of Service page with business branding.</li>
             <li><strong>policy.pdf</strong>: A PDF version of your policies.</li>
             <li><strong>cookie.js</strong>: A script for a simple cookie consent banner.</li>
             <li><strong>accessibility.js</strong>: A script for a basic accessibility widget.</li>
             <li><strong>readme_install.html</strong>: These installation instructions.</li>
         </ul>
+        <p class="note"><strong>Note:</strong> The policy.html file includes Open Graph meta tags for better social media sharing and placeholder favicon links that you should update with your actual business logo.</p>
     </div>
 
     <div class="card">
@@ -989,6 +1041,19 @@ end`},Uw=function(){for(var e=[],t=0;t<arguments.length;t++)e[t]=arguments[t];re
         <pre><code>&lt;main id="main-content"&gt;
   &lt;!-- Your main page content goes here --&gt;
 &lt;/main&gt;</code></pre>
+    </div>
+
+    <div class="card">
+        <h2>Step 5: Add Your Business Logo/Favicon (Recommended)</h2>
+        <p>For better branding and social sharing, add your business favicon and logo files to your website root:</p>
+        <ul>
+            <li><code>favicon.ico</code> - Main favicon (16x16 or 32x32 px)</li>
+            <li><code>favicon-32.png</code> - 32x32 PNG favicon</li>
+            <li><code>favicon-16.png</code> - 16x16 PNG favicon</li>
+            <li><code>apple-touch-icon.png</code> - 180x180 Apple touch icon</li>
+            <li><code>favicon-512.png</code> - 512x512 PNG for social sharing</li>
+        </ul>
+        <p class="note">The policy.html file already includes the proper meta tags for these files. When someone shares your privacy policy, it will show your business logo and proper branding.</p>
     </div>
 
     <p class="note"><strong>Disclaimer:</strong> This starter pack provides a basic template and is not a substitute for professional legal advice. You are responsible for ensuring your website complies with all applicable laws and regulations for your jurisdiction and business type.</p>
