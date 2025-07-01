@@ -104,9 +104,28 @@ const CheckoutFormContent = ({ formState, onPaymentSuccess, onCancel }: Checkout
         color: "#ffffff",
         backgroundColor: "#0d1117",
         fontFamily: "system-ui, sans-serif",
+        fontWeight: "400",
+        lineHeight: "24px",
         "::placeholder": {
           color: "#6b7280",
         },
+        ":focus": {
+          color: "#ffffff",
+        },
+        ":hover": {
+          color: "#ffffff",
+        },
+        ":-webkit-autofill": {
+          color: "#ffffff",
+        },
+        iconColor: "#6b7280",
+      },
+      complete: {
+        color: "#ffffff",
+        iconColor: "#10b981",
+      },
+      empty: {
+        color: "#ffffff",
         iconColor: "#6b7280",
       },
       invalid: {
