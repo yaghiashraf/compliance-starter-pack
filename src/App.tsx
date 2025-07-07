@@ -3,6 +3,7 @@ import { ComplianceForm } from "./components/Form";
 import { SuccessModal } from "./components/SuccessModal";
 import { LandingPage } from "./components/LandingPage";
 import { CheckoutForm } from "./components/CheckoutForm";
+import { CookieBanner } from "./components/CookieBanner";
 import { genZip } from "./utils/genZip";
 import { Progress } from "./components/ui/progress";
 import { motion, AnimatePresence } from "framer-motion";
@@ -199,6 +200,8 @@ function App() {
         zipBlob={zipBlob}
         businessName={formState.businessName}
       />
+
+      <CookieBanner />
     </div>
   );
 }

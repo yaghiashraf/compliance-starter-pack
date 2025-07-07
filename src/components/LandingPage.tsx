@@ -42,11 +42,16 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
   ]
 
   const includes = [
-    "Privacy Policy & Terms of Service (HTML + PDF)",
-    "Cookie Consent Banner (2KB JavaScript)",
-    "Accessibility Widget (Font & Contrast Controls)",
-    "Installation Guide with Copy-Paste Code",
-    "Mobile-Responsive Design"
+    "Comprehensive Privacy Policy (GDPR, CCPA, PIPEDA compliant)",
+    "Professional Terms of Service with liability protection",
+    "Detailed Cookie Policy with category explanations", 
+    "GDPR Data Processing Agreement template",
+    "Advanced Cookie Consent Banner (Accept/Reject/Customize)",
+    "ADA/WCAG Accessibility Widget with full controls",
+    "User Privacy Rights Portal (data requests, deletion)",
+    "Professional PDF bundle for legal documentation",
+    "Implementation Checklist for compliance verification",
+    "Step-by-step Installation Guide with code examples"
   ]
 
   const painPoints = [
@@ -233,16 +238,21 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
               <div className="flex items-center mb-4">
                 <Package className="w-6 h-6 text-blue-400 mr-3" />
                 <span className="text-lg font-semibold text-white">starter-pack.zip</span>
-                <span className="ml-auto text-sm text-gray-400 bg-gray-800 px-2 py-1 rounded">~35 kB</span>
+                <span className="ml-auto text-sm text-gray-400 bg-gray-800 px-2 py-1 rounded">~85 kB</span>
               </div>
               
               <div className="space-y-3">
                 {[
-                  { name: "policy.html", desc: "Privacy Policy + Terms", icon: FileText },
-                  { name: "policy.pdf", desc: "Professional PDF version", icon: FileText },
-                  { name: "cookie.js", desc: "Smart cookie consent banner", icon: Code },
-                  { name: "accessibility.js", desc: "ADA compliance widget", icon: Users },
-                  { name: "readme_install.html", desc: "5-minute setup guide", icon: BookOpen }
+                  { name: "privacy-policy.html", desc: "Comprehensive Privacy Policy", icon: FileText },
+                  { name: "terms-of-service.html", desc: "Legal Terms of Service", icon: FileText },
+                  { name: "cookie-policy.html", desc: "Detailed Cookie Policy", icon: FileText },
+                  { name: "data-processing-agreement.html", desc: "GDPR Data Processing Agreement", icon: FileText },
+                  { name: "policies-combined.pdf", desc: "Professional PDF bundle", icon: FileText },
+                  { name: "cookie-banner.js", desc: "GDPR/CCPA cookie consent", icon: Code },
+                  { name: "accessibility-widget.js", desc: "ADA/WCAG compliance widget", icon: Users },
+                  { name: "privacy-center.js", desc: "User data rights portal", icon: Code },
+                  { name: "compliance-checklist.pdf", desc: "Implementation checklist", icon: BookOpen },
+                  { name: "installation-guide.html", desc: "Step-by-step setup", icon: BookOpen }
                 ].map((file) => (
                   <div key={file.name} className="flex items-center p-3 bg-[#0d1117] rounded-lg">
                     <file.icon className="w-4 h-4 text-blue-400 mr-3" />
@@ -760,14 +770,30 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
                 Instant compliance solutions for small businesses. Generate professional 
                 privacy policies, cookie banners, and accessibility tools in seconds for just $6.99.
               </p>
-              <div className="flex space-x-4">
-                <div className="flex items-center space-x-2">
+              <div className="flex flex-wrap gap-3">
+                <div className="flex items-center space-x-2 bg-green-900/20 px-3 py-1 rounded-full border border-green-500/30">
                   <Shield className="w-4 h-4 text-green-400" />
-                  <span className="text-sm text-gray-400">GDPR Compliant</span>
+                  <span className="text-sm text-green-300 font-medium">GDPR</span>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <Lock className="w-4 h-4 text-blue-400" />
-                  <span className="text-sm text-gray-400">Privacy First</span>
+                <div className="flex items-center space-x-2 bg-blue-900/20 px-3 py-1 rounded-full border border-blue-500/30">
+                  <Shield className="w-4 h-4 text-blue-400" />
+                  <span className="text-sm text-blue-300 font-medium">CCPA</span>
+                </div>
+                <div className="flex items-center space-x-2 bg-purple-900/20 px-3 py-1 rounded-full border border-purple-500/30">
+                  <Shield className="w-4 h-4 text-purple-400" />
+                  <span className="text-sm text-purple-300 font-medium">PIPEDA</span>
+                </div>
+                <div className="flex items-center space-x-2 bg-orange-900/20 px-3 py-1 rounded-full border border-orange-500/30">
+                  <Shield className="w-4 h-4 text-orange-400" />
+                  <span className="text-sm text-orange-300 font-medium">ADA</span>
+                </div>
+                <div className="flex items-center space-x-2 bg-cyan-900/20 px-3 py-1 rounded-full border border-cyan-500/30">
+                  <Shield className="w-4 h-4 text-cyan-400" />
+                  <span className="text-sm text-cyan-300 font-medium">UK GDPR</span>
+                </div>
+                <div className="flex items-center space-x-2 bg-pink-900/20 px-3 py-1 rounded-full border border-pink-500/30">
+                  <Shield className="w-4 h-4 text-pink-400" />
+                  <span className="text-sm text-pink-300 font-medium">LGPD</span>
                 </div>
               </div>
             </div>
@@ -825,35 +851,156 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy - Compliance Starter Pack</title>
   <style>
-    body { font-family: system-ui, -apple-system, sans-serif; max-width: 800px; margin: 2rem auto; padding: 1rem; line-height: 1.6; }
+    body { font-family: system-ui, -apple-system, sans-serif; max-width: 800px; margin: 2rem auto; padding: 1rem; line-height: 1.6; color: #333; }
     h1 { color: #333; border-bottom: 2px solid #007acc; padding-bottom: 0.5rem; }
-    h2 { color: #555; margin-top: 2rem; }
+    h2 { color: #555; margin-top: 2rem; border-left: 4px solid #007acc; padding-left: 1rem; }
+    h3 { color: #666; margin-top: 1.5rem; }
     ul { margin-left: 1.5rem; }
     li { margin-bottom: 0.5rem; }
     strong { color: #007acc; }
+    .highlight { background-color: #f0f8ff; padding: 1rem; border-left: 4px solid #007acc; margin: 1rem 0; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
   </style>
 </head>
 <body>
   <h1>Privacy Policy - Compliance Starter Pack</h1>
   <p><strong>Effective Date:</strong> ${new Date().toLocaleDateString()}</p>
+  <p><strong>Last Updated:</strong> ${new Date().toLocaleDateString()}</p>
   
-  <h2>What We Do</h2>
-  <p>Compliance Starter Pack is a paid service ($6.99) that generates privacy policies and compliance documents for small businesses. All document processing happens in your browser - we don't collect, store, or transmit any of your business information.</p>
+  <div class="highlight">
+    <strong>Privacy-First Promise:</strong> This tool runs entirely in your browser. We don't collect, store, or transmit any of your business information to our servers.
+  </div>
   
-  <h2>Information We Don't Collect</h2>
-  <p>This tool runs entirely in your browser. We don't have servers that store your data. When you generate your compliance pack:</p>
+  <h2>1. Controller Information</h2>
+  <p><strong>Data Controller:</strong> Compliance Starter Pack<br>
+  <strong>Contact:</strong> privacy@compliancestarterpack.com<br>
+  <strong>Address:</strong> Available upon request</p>
+  
+  <h2>2. What We Do</h2>
+  <p>Compliance Starter Pack is a paid service ($6.99) that generates privacy policies and compliance documents for small businesses. Our service operates entirely client-side in your web browser.</p>
+  
+  <h2>3. Information We Process</h2>
+  
+  <h3>3.1 Information We DON'T Collect</h3>
+  <p>When you use our compliance generator:</p>
   <ul>
-    <li>Your business information stays on your device</li>
-    <li>No data is sent to our servers</li>
-    <li>No cookies track your usage</li>
-    <li>No analytics monitor your activity</li>
+    <li><strong>Your business information</strong> stays on your device and is never transmitted</li>
+    <li><strong>Generated documents</strong> are created locally in your browser</li>
+    <li><strong>Form data</strong> is processed client-side only</li>
+    <li><strong>No tracking cookies</strong> are placed on your device</li>
+    <li><strong>No analytics</strong> monitor your specific usage patterns</li>
   </ul>
   
-  <h2>Third-Party Services</h2>
-  <p>This website may be hosted on platforms like Netlify or Vercel, which may collect basic analytics like page views and geographic regions for infrastructure purposes.</p>
+  <h3>3.2 Payment Information</h3>
+  <p>We use Stripe for payment processing. Stripe collects:</p>
+  <ul>
+    <li>Payment card information (processed securely by Stripe)</li>
+    <li>Billing email address</li>
+    <li>Transaction details for receipt purposes</li>
+  </ul>
+  <p><strong>Legal Basis:</strong> Contract performance and legitimate business interests</p>
   
-  <h2>Contact</h2>
-  <p>For questions about this privacy policy: <a href="mailto:legal@compliancestarterpack.com">legal@compliancestarterpack.com</a></p>
+  <h3>3.3 Technical Information</h3>
+  <p>Our hosting platform (Netlify) may automatically collect:</p>
+  <ul>
+    <li>IP address (for security and infrastructure)</li>
+    <li>Browser type and version</li>
+    <li>Page views and geographic regions</li>
+    <li>Error logs and performance metrics</li>
+  </ul>
+  <p><strong>Legal Basis:</strong> Legitimate interests for service provision and security</p>
+  
+  <h2>4. How We Use Information</h2>
+  <table>
+    <tr><th>Purpose</th><th>Data</th><th>Legal Basis</th><th>Retention</th></tr>
+    <tr><td>Payment Processing</td><td>Payment details</td><td>Contract</td><td>7 years (legal requirement)</td></tr>
+    <tr><td>Service Delivery</td><td>Email for receipt</td><td>Contract</td><td>3 years</td></tr>
+    <tr><td>Technical Operation</td><td>Server logs</td><td>Legitimate interest</td><td>30 days</td></tr>
+    <tr><td>Security</td><td>IP addresses</td><td>Legitimate interest</td><td>90 days</td></tr>
+  </table>
+  
+  <h2>5. Data Sharing and Recipients</h2>
+  <ul>
+    <li><strong>Stripe:</strong> Payment processing (PCI DSS compliant)</li>
+    <li><strong>Netlify:</strong> Website hosting and infrastructure</li>
+    <li><strong>No third parties</strong> receive your business information or generated documents</li>
+    <li><strong>No marketing companies</strong> receive any data</li>
+    <li><strong>No data brokers</strong> purchase or access our data</li>
+  </ul>
+  
+  <h2>6. Your Privacy Rights</h2>
+  
+  <h3>6.1 GDPR Rights (EU Residents)</h3>
+  <ul>
+    <li><strong>Access:</strong> Request copies of your personal data</li>
+    <li><strong>Rectification:</strong> Correct inaccurate data</li>
+    <li><strong>Erasure:</strong> Request deletion of your data</li>
+    <li><strong>Portability:</strong> Receive your data in machine-readable format</li>
+    <li><strong>Restriction:</strong> Limit how we process your data</li>
+    <li><strong>Objection:</strong> Object to processing based on legitimate interests</li>
+  </ul>
+  
+  <h3>6.2 CCPA Rights (California Residents)</h3>
+  <ul>
+    <li><strong>Know:</strong> What personal information we collect</li>
+    <li><strong>Delete:</strong> Request deletion of personal information</li>
+    <li><strong>Opt-out:</strong> Opt-out of sale (we don't sell data)</li>
+    <li><strong>Non-discrimination:</strong> Equal service regardless of privacy choices</li>
+  </ul>
+  
+  <h3>6.3 Exercising Your Rights</h3>
+  <p>Contact us at <strong>privacy@compliancestarterpack.com</strong> with:</p>
+  <ul>
+    <li>Your full name and email address</li>
+    <li>Specific right you wish to exercise</li>
+    <li>Verification of your identity</li>
+  </ul>
+  <p>We will respond within 30 days (GDPR) or 45 days (CCPA).</p>
+  
+  <h2>7. International Transfers</h2>
+  <p>Your data may be processed in:</p>
+  <ul>
+    <li><strong>United States:</strong> Stripe (payment processing)</li>
+    <li><strong>European Union:</strong> Netlify edge servers</li>
+  </ul>
+  <p>All transfers use appropriate safeguards including Standard Contractual Clauses.</p>
+  
+  <h2>8. Security Measures</h2>
+  <ul>
+    <li><strong>Encryption:</strong> TLS 1.3 for data in transit</li>
+    <li><strong>Access Controls:</strong> Limited employee access</li>
+    <li><strong>Regular Audits:</strong> Security assessments</li>
+    <li><strong>Incident Response:</strong> 72-hour breach notification</li>
+  </ul>
+  
+  <h2>9. Children's Privacy</h2>
+  <p>Our service is not intended for children under 16. We do not knowingly collect personal information from children.</p>
+  
+  <h2>10. Changes to This Policy</h2>
+  <p>We will notify you of material changes by:</p>
+  <ul>
+    <li>Email notification (if we have your email)</li>
+    <li>Prominent notice on our website</li>
+    <li>Updated "Last Modified" date</li>
+  </ul>
+  
+  <h2>11. Complaints and Supervisory Authorities</h2>
+  <p>If you believe we've violated your privacy rights, you can:</p>
+  <ul>
+    <li>Contact us directly at privacy@compliancestarterpack.com</li>
+    <li>File a complaint with your local data protection authority</li>
+    <li>Contact the Information Commissioner's Office (UK) or your EU supervisory authority</li>
+  </ul>
+  
+  <h2>12. Contact Information</h2>
+  <p><strong>Data Protection Officer:</strong> privacy@compliancestarterpack.com<br>
+  <strong>General Inquiries:</strong> support@compliancestarterpack.com<br>
+  <strong>Response Time:</strong> Within 5 business days</p>
+  
+  <hr style="margin: 2rem 0;">
+  <p><em>This privacy policy was generated using our own Compliance Starter Pack tool - demonstrating the professional quality of our generated documents.</em></p>
 </body>
 </html>`;
                       const newWindow = window.open('', '_blank');
@@ -877,36 +1024,201 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Terms of Service - Compliance Starter Pack</title>
   <style>
-    body { font-family: system-ui, -apple-system, sans-serif; max-width: 800px; margin: 2rem auto; padding: 1rem; line-height: 1.6; }
+    body { font-family: system-ui, -apple-system, sans-serif; max-width: 800px; margin: 2rem auto; padding: 1rem; line-height: 1.6; color: #333; }
     h1 { color: #333; border-bottom: 2px solid #007acc; padding-bottom: 0.5rem; }
-    h2 { color: #555; margin-top: 2rem; }
+    h2 { color: #555; margin-top: 2rem; border-left: 4px solid #007acc; padding-left: 1rem; }
+    h3 { color: #666; margin-top: 1.5rem; }
     strong { color: #007acc; }
-    .important { background: #fff3cd; border-left: 4px solid #ffc107; padding: 1rem; margin: 1rem 0; }
+    .important { background: #fff3cd; border-left: 4px solid #ffc107; padding: 1rem; margin: 1rem 0; border-radius: 4px; }
+    .critical { background: #f8d7da; border-left: 4px solid #dc3545; padding: 1rem; margin: 1rem 0; border-radius: 4px; }
+    ul { margin-left: 1.5rem; }
+    li { margin-bottom: 0.5rem; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background-color: #f2f2f2; }
   </style>
 </head>
 <body>
   <h1>Terms of Service - Compliance Starter Pack</h1>
   <p><strong>Effective Date:</strong> ${new Date().toLocaleDateString()}</p>
+  <p><strong>Last Updated:</strong> ${new Date().toLocaleDateString()}</p>
   
-  <h2>Acceptance of Terms</h2>
-  <p>By using Compliance Starter Pack, you agree to these terms.</p>
+  <h2>1. Acceptance and Agreement</h2>
+  <p>By accessing, using, or purchasing from Compliance Starter Pack ("Service," "we," "us," or "our"), you ("User," "you," or "your") agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, you must not use our Service.</p>
   
-  <h2>Description of Service</h2>
-  <p>Compliance Starter Pack is a paid service ($6.99) that generates basic compliance documents for websites. The generated documents are templates and may not cover all legal requirements for your specific situation.</p>
+  <h2>2. Service Description</h2>
+  <p>Compliance Starter Pack is a digital service that generates legal document templates for website compliance, including:</p>
+  <ul>
+    <li>Privacy policies for GDPR, CCPA, and other jurisdictions</li>
+    <li>Terms of service templates</li>
+    <li>Cookie consent banners and policies</li>
+    <li>Accessibility widgets and compliance tools</li>
+    <li>Implementation guides and checklists</li>
+  </ul>
   
-  <h2>Disclaimer</h2>
-  <div class="important">
-    <p><strong>Important:</strong> The documents generated by this tool are basic templates and are not a substitute for professional legal advice. You are responsible for ensuring your website complies with all applicable laws and regulations.</p>
+  <h3>2.1 Service Pricing</h3>
+  <table>
+    <tr><th>Service</th><th>Price</th><th>Includes</th></tr>
+    <tr><td>Compliance Starter Pack</td><td>$6.99 USD</td><td>Complete document bundle + tools</td></tr>
+    <tr><td>Refund Period</td><td>3 days</td><td>Risk-free guarantee</td></tr>
+  </table>
+  
+  <h2>3. User Responsibilities and Warranties</h2>
+  <p>By using our Service, you represent and warrant that:</p>
+  <ul>
+    <li>You are at least 18 years old or have parental consent</li>
+    <li>You have the legal authority to enter into this agreement</li>
+    <li>All information provided is accurate and complete</li>
+    <li>You will use the Service only for lawful purposes</li>
+    <li>You will not attempt to reverse engineer or redistribute our content</li>
+  </ul>
+  
+  <h2>4. Important Legal Disclaimers</h2>
+  
+  <div class="critical">
+    <h3>4.1 Not Legal Advice</h3>
+    <p><strong>CRITICAL DISCLAIMER:</strong> The documents generated by this Service are templates based on common legal requirements. They are NOT:</p>
+    <ul>
+      <li>Legal advice specific to your situation</li>
+      <li>Reviewed by attorneys for your jurisdiction</li>
+      <li>Guaranteed to meet all regulatory requirements</li>
+      <li>Substitutes for professional legal consultation</li>
+    </ul>
   </div>
   
-  <h2>Limitation of Liability</h2>
-  <p>This tool is provided "as is" without warranties. We are not liable for any damages arising from your use of the generated documents.</p>
+  <div class="important">
+    <h3>4.2 Professional Review Recommended</h3>
+    <p>We strongly recommend having all generated documents reviewed by qualified legal counsel before implementation, especially for:</p>
+    <ul>
+      <li>Businesses with complex data processing</li>
+      <li>Companies operating in multiple jurisdictions</li>
+      <li>Organizations handling sensitive personal data</li>
+      <li>Businesses with specific regulatory requirements</li>
+    </ul>
+  </div>
   
-  <h2>Payment and Refunds</h2>
-  <p>This service costs $6.99 for a one-time compliance pack generation. All payments are processed through Stripe. We offer a 30-day money-back guarantee if you're not satisfied with the generated documents.</p>
+  <h2>5. Limitation of Liability</h2>
   
-  <h2>Contact</h2>
-  <p>For questions: <a href="mailto:legal@compliancestarterpack.com">legal@compliancestarterpack.com</a></p>
+  <h3>5.1 Service Limitations</h3>
+  <p>Our Service is provided "AS IS" and "AS AVAILABLE" without warranties of any kind, either express or implied. We explicitly disclaim:</p>
+  <ul>
+    <li>Warranties of merchantability or fitness for purpose</li>
+    <li>Guarantees of legal compliance in any jurisdiction</li>
+    <li>Assurances of regulatory approval or acceptance</li>
+    <li>Protection against legal claims or penalties</li>
+  </ul>
+  
+  <h3>5.2 Damage Limitations</h3>
+  <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW:</p>
+  <ul>
+    <li><strong>Total Liability:</strong> Limited to the amount paid ($6.99)</li>
+    <li><strong>Consequential Damages:</strong> We are not liable for indirect, special, or consequential damages</li>
+    <li><strong>Regulatory Fines:</strong> We are not responsible for any fines, penalties, or legal consequences</li>
+    <li><strong>Business Losses:</strong> We do not cover lost profits, data, or business opportunities</li>
+  </ul>
+  
+  <h2>6. Payment Terms and Refunds</h2>
+  
+  <h3>6.1 Payment Processing</h3>
+  <ul>
+    <li><strong>Processor:</strong> All payments processed through Stripe</li>
+    <li><strong>Currencies:</strong> USD only</li>
+    <li><strong>Payment Methods:</strong> Major credit/debit cards</li>
+    <li><strong>Billing:</strong> One-time charge upon purchase</li>
+  </ul>
+  
+  <h3>6.2 Refund Policy</h3>
+  <p>We offer a <strong>3-day risk-free guarantee:</strong></p>
+  <ul>
+    <li><strong>Eligibility:</strong> Request within 72 hours of purchase</li>
+    <li><strong>Process:</strong> Contact support@compliancestarterpack.com</li>
+    <li><strong>Refund Method:</strong> Original payment method</li>
+    <li><strong>Processing Time:</strong> 5-10 business days</li>
+  </ul>
+  
+  <h2>7. Intellectual Property Rights</h2>
+  
+  <h3>7.1 Our Rights</h3>
+  <ul>
+    <li>We retain all rights to our software, templates, and methodology</li>
+    <li>Our brand names, logos, and content are protected by trademark and copyright</li>
+    <li>You may not redistribute, resell, or create derivative works</li>
+  </ul>
+  
+  <h3>7.2 Your Rights</h3>
+  <ul>
+    <li>You receive a non-exclusive license to use generated documents for your business</li>
+    <li>You may modify generated content for your specific needs</li>
+    <li>You retain ownership of your input data and customizations</li>
+  </ul>
+  
+  <h2>8. Privacy and Data Protection</h2>
+  <p>Your privacy is important to us. Our privacy practices are governed by our Privacy Policy, which is incorporated by reference into these Terms. Key points:</p>
+  <ul>
+    <li>Document generation occurs entirely in your browser</li>
+    <li>We do not store or transmit your business information</li>
+    <li>Payment data is processed securely by Stripe</li>
+    <li>Technical logs are retained for security purposes only</li>
+  </ul>
+  
+  <h2>9. Prohibited Uses</h2>
+  <p>You agree NOT to use our Service for:</p>
+  <ul>
+    <li>Illegal activities or fraudulent purposes</li>
+    <li>Creating documents for businesses you don't own or represent</li>
+    <li>Reverse engineering or attempting to extract our algorithms</li>
+    <li>Reselling or redistributing our generated content</li>
+    <li>Circumventing our payment systems</li>
+    <li>Activities that violate applicable laws or regulations</li>
+  </ul>
+  
+  <h2>10. Service Availability and Changes</h2>
+  
+  <h3>10.1 Availability</h3>
+  <p>While we strive for 99.9% uptime, we do not guarantee uninterrupted service access. Maintenance, updates, or technical issues may temporarily affect availability.</p>
+  
+  <h3>10.2 Service Modifications</h3>
+  <p>We reserve the right to:</p>
+  <ul>
+    <li>Update document templates to reflect legal changes</li>
+    <li>Modify pricing with 30 days notice</li>
+    <li>Enhance features and functionality</li>
+    <li>Discontinue the service with 90 days notice</li>
+  </ul>
+  
+  <h2>11. Governing Law and Dispute Resolution</h2>
+  
+  <h3>11.1 Governing Law</h3>
+  <p>These Terms are governed by the laws of [JURISDICTION], without regard to conflict of law principles.</p>
+  
+  <h3>11.2 Dispute Resolution</h3>
+  <p>Before pursuing legal action, we encourage good-faith efforts to resolve disputes through:</p>
+  <ol>
+    <li><strong>Direct Contact:</strong> Email legal@compliancestarterpack.com</li>
+    <li><strong>Mediation:</strong> Voluntary mediation if direct resolution fails</li>
+    <li><strong>Small Claims Court:</strong> For disputes under jurisdictional limits</li>
+  </ol>
+  
+  <h2>12. Severability and Entire Agreement</h2>
+  <p>If any provision of these Terms is found unenforceable, the remaining provisions will continue in full force. These Terms, together with our Privacy Policy, constitute the entire agreement between you and Compliance Starter Pack.</p>
+  
+  <h2>13. Contact Information</h2>
+  <p><strong>Legal Department:</strong> legal@compliancestarterpack.com<br>
+  <strong>Customer Support:</strong> support@compliancestarterpack.com<br>
+  <strong>Business Address:</strong> Available upon request<br>
+  <strong>Response Time:</strong> Within 5 business days for legal matters</p>
+  
+  <h2>14. Updates to Terms</h2>
+  <p>We may update these Terms periodically. Changes will be communicated through:</p>
+  <ul>
+    <li>Email notification to recent customers</li>
+    <li>Prominent website notice</li>
+    <li>Updated "Last Modified" date</li>
+  </ul>
+  <p>Continued use after changes constitutes acceptance of updated Terms.</p>
+  
+  <hr style="margin: 2rem 0;">
+  <p><em>These terms of service were generated using our own Compliance Starter Pack tool - demonstrating the comprehensive and professional quality of our legal document templates.</em></p>
 </body>
 </html>`;
                       const newWindow = window.open('', '_blank');
