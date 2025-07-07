@@ -163,6 +163,13 @@ const CheckoutFormContent = ({ formState, onPaymentSuccess, onCancel }: Checkout
             </div>
             <h1 className="text-2xl font-bold mb-2">Secure Payment - Final Step</h1>
             <p className="text-gray-400">30 seconds to complete compliance protection</p>
+            <div className="mt-3 flex items-center justify-center space-x-4 text-xs text-gray-500">
+              <span>🛡️ 1,200+ businesses protected</span>
+              <span>•</span>
+              <span>⚡ Instant download</span>
+              <span>•</span>
+              <span>🔒 Secure checkout</span>
+            </div>
           </div>
 
           {/* Order Summary */}
@@ -246,7 +253,7 @@ const CheckoutFormContent = ({ formState, onPaymentSuccess, onCancel }: Checkout
             <div className="text-center">
               <p className="text-xs text-gray-500">
                 By completing your purchase, you agree to our Terms of Service and Privacy Policy.<br/>
-                <span className="text-green-400">30-day money-back guarantee</span> • <span className="text-blue-400">Instant download</span> • <span className="text-purple-400">Zero recurring fees</span>
+                <span className="text-green-400">3-day risk-free guarantee</span> • <span className="text-blue-400">Instant download</span> • <span className="text-purple-400">Zero recurring fees</span>
               </p>
             </div>
           </form>

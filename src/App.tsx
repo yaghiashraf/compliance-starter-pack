@@ -117,6 +117,16 @@ function App() {
               </div>
               
               <div className="text-center mb-8">
+                <div className="mb-4">
+                  <div className="flex items-center justify-center space-x-2 text-sm text-gray-400 mb-2">
+                    <span>Step 1 of 2</span>
+                    <span>•</span>
+                    <span>Almost there!</span>
+                  </div>
+                  <div className="w-48 h-2 bg-gray-700 rounded-full mx-auto">
+                    <div className="w-1/2 h-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"></div>
+                  </div>
+                </div>
                 <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
                   Protect Your Business in 2 Minutes
                 </h1>

@@ -104,10 +104,10 @@ export const ComplianceForm = ({ formState, onFormChange, onSubmit }: Compliance
           </div>
         </div>
         <div className="space-y-2">
-          <Label htmlFor="industry">Your Business Industry</Label>
+          <Label htmlFor="industry">Your Business Industry <span className="text-gray-500 text-sm">(optional)</span></Label>
           <Select onValueChange={handleIndustryChange} defaultValue={formState.industry} name="industry">
             <SelectTrigger>
-              <SelectValue placeholder="What type of business do you run?" />
+              <SelectValue placeholder="What type of business do you run? (optional)" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="technology">Technology & Software</SelectItem>
