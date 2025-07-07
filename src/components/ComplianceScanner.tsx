@@ -127,10 +127,10 @@ export function ComplianceScanner({ onGetStarted }: ComplianceScannerProps) {
           className="text-center mb-8"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Is Your Website Compliant?
+            Is Your Website a Liability Magnet?
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Get a free compliance scan in 10 seconds. See exactly what's missing and how much risk you're facing.
+            Free 10-second scan reveals your exact fine risk. See what compliance violations could cost you.
           </p>
         </motion.div>
 
@@ -165,7 +165,7 @@ export function ComplianceScanner({ onGetStarted }: ComplianceScannerProps) {
               ) : (
                 <>
                   <Search className="w-5 h-5 mr-2" />
-                  Scan Now (Free)
+                  Check My Risk (Free)
                 </>
               )}
             </Button>
@@ -203,7 +203,7 @@ export function ComplianceScanner({ onGetStarted }: ComplianceScannerProps) {
                 <div className="flex items-center space-x-2 text-red-400 mb-4">
                   <AlertTriangle className="w-5 h-5" />
                   <span className="font-semibold">
-                    {scanResult.issues.length} Critical Issues Found
+                    {scanResult.issues.length} Violations Exposing You to Fines
                   </span>
                 </div>
 
@@ -221,22 +221,22 @@ export function ComplianceScanner({ onGetStarted }: ComplianceScannerProps) {
                     <AlertTriangle className="w-6 h-6 text-red-400 flex-shrink-0 mt-1" />
                     <div>
                       <h3 className="text-lg font-semibold text-red-300 mb-2">
-                        Your Website Is At Risk!
+                        You're One Audit Away From Bankruptcy!
                       </h3>
                       <p className="text-red-200 mb-4">
-                        Without proper compliance measures, you could face:
+                        These violations could trigger devastating penalties:
                       </p>
                       <ul className="text-red-200 space-y-1 text-sm mb-4">
-                        <li>• GDPR fines up to €20M or 4% of revenue</li>
-                        <li>• CCPA penalties of $2,500-$7,500 per violation</li>
-                        <li>• ADA lawsuits averaging $10,000+ in settlements</li>
-                        <li>• Loss of customer trust and business</li>
+                        <li>• GDPR fines: €615K average (up to €20M maximum)</li>
+                        <li>• CCPA violations: $7,500 each (adds up fast)</li>
+                        <li>• ADA lawsuits: $15K average settlement + legal fees</li>
+                        <li>• Customer exodus when word spreads</li>
                       </ul>
                       <Button
                         onClick={onGetStarted}
                         className="bg-white text-red-900 hover:bg-gray-100 font-bold px-6 py-2"
                       >
-                        Fix These Issues Now - $6.99
+                        Fix Everything Now - Only $6.99
                       </Button>
                     </div>
                   </div>

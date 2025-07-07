@@ -161,24 +161,30 @@ const CheckoutFormContent = ({ formState, onPaymentSuccess, onCancel }: Checkout
             <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-4">
               <CreditCard className="w-8 h-8 text-white" />
             </div>
-            <h1 className="text-2xl font-bold mb-2">Secure Checkout</h1>
-            <p className="text-gray-400">Complete your purchase to get instant access</p>
+            <h1 className="text-2xl font-bold mb-2">Secure Payment - Final Step</h1>
+            <p className="text-gray-400">30 seconds to complete compliance protection</p>
           </div>
 
           {/* Order Summary */}
           <div className="bg-[#0d1117] rounded-lg p-6 mb-6">
-            <h3 className="font-semibold mb-4">Order Summary</h3>
+            <h3 className="font-semibold mb-4">You're Getting Complete Protection</h3>
             <div className="flex justify-between items-center mb-2">
-              <span className="text-gray-400">Compliance Starter Pack</span>
+              <span className="text-gray-400">Complete Compliance Kit</span>
               <span className="font-semibold">$6.99</span>
+            </div>
+            <div className="text-sm text-gray-400 mb-3">
+              ✅ Privacy Policy + Terms of Service<br/>
+              ✅ GDPR/CCPA Cookie Banner<br/>
+              ✅ ADA Accessibility Widget<br/>
+              ✅ Installation Guide
             </div>
             <div className="flex justify-between items-center mb-4 text-sm text-gray-500">
               <span>For: {formState.businessName}</span>
-              <span>One-time payment</span>
+              <span className="text-green-400">✨ Instant Download</span>
             </div>
             <div className="border-t border-gray-700 pt-4">
               <div className="flex justify-between items-center font-bold text-lg">
-                <span>Total</span>
+                <span>Total (vs $3,500 lawyer fees)</span>
                 <span className="text-green-400">$6.99 USD</span>
               </div>
             </div>
@@ -197,7 +203,7 @@ const CheckoutFormContent = ({ formState, onPaymentSuccess, onCancel }: Checkout
                 required
                 disabled={isProcessing}
               />
-              <p className="text-xs text-gray-500">Receipt will be sent to this email</p>
+              <p className="text-xs text-gray-500">Receipt & download link sent to this email</p>
             </div>
 
             <div className="space-y-2">
@@ -216,7 +222,7 @@ const CheckoutFormContent = ({ formState, onPaymentSuccess, onCancel }: Checkout
 
             <div className="flex items-center space-x-2 text-sm text-gray-400 bg-[#0d1117] p-3 rounded-lg">
               <Lock className="w-4 h-4 text-green-400" />
-              <span>Your payment information is encrypted and secure</span>
+              <span>🔒 Bank-level encryption • Powered by Stripe • No data stored</span>
             </div>
 
             <Button
@@ -232,15 +238,15 @@ const CheckoutFormContent = ({ formState, onPaymentSuccess, onCancel }: Checkout
               ) : (
                 <div className="flex items-center space-x-2">
                   <Shield className="w-5 h-5" />
-                  <span>Complete Purchase - $6.99</span>
+                  <span>Complete Protection - $6.99</span>
                 </div>
               )}
             </Button>
 
             <div className="text-center">
               <p className="text-xs text-gray-500">
-                By completing your purchase, you agree to our Terms of Service and Privacy Policy.
-                30-day money-back guarantee included.
+                By completing your purchase, you agree to our Terms of Service and Privacy Policy.<br/>
+                <span className="text-green-400">30-day money-back guarantee</span> • <span className="text-blue-400">Instant download</span> • <span className="text-purple-400">Zero recurring fees</span>
               </p>
             </div>
           </form>
@@ -248,7 +254,7 @@ const CheckoutFormContent = ({ formState, onPaymentSuccess, onCancel }: Checkout
         
         <div className="mt-6 text-center">
           <p className="text-xs text-gray-500">
-            🔒 Secured by Stripe • 💳 All major cards accepted • ⚡ Instant download
+            🔒 Secured by Stripe • 💳 All major cards accepted • ⚡ Instant download • 🛡️ Used by 1,200+ businesses
           </p>
         </div>
       </div>

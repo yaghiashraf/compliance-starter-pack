@@ -39,7 +39,7 @@ export const ComplianceForm = ({ formState, onFormChange, onSubmit }: Compliance
     >
       <form onSubmit={onSubmit} className="space-y-6">
         <div className="space-y-2">
-          <Label htmlFor="businessName">Business Name</Label>
+          <Label htmlFor="businessName">Your Business Name</Label>
           <Input
             id="businessName"
             name="businessName"
@@ -49,9 +49,12 @@ export const ComplianceForm = ({ formState, onFormChange, onSubmit }: Compliance
             onChange={onFormChange}
             required
           />
+          <p className="text-xs text-gray-500">
+            This will appear in your privacy policy and legal documents
+          </p>
         </div>
         <div className="space-y-2">
-          <Label htmlFor="websiteUrl">Website URL</Label>
+          <Label htmlFor="websiteUrl">Your Website URL</Label>
           <Input
             id="websiteUrl"
             name="websiteUrl"
@@ -62,27 +65,30 @@ export const ComplianceForm = ({ formState, onFormChange, onSubmit }: Compliance
             required
           />
           <p className="text-xs text-gray-500">
-            Enter your domain (we'll add https:// if needed)
+            The website that needs compliance protection (we'll auto-format)
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <Label htmlFor="jurisdiction">Jurisdiction</Label>
+            <Label htmlFor="jurisdiction">Your Legal Jurisdiction</Label>
             <Select onValueChange={handleJurisdictionChange} defaultValue={formState.jurisdiction} name="jurisdiction">
               <SelectTrigger>
-                <SelectValue placeholder="Select a jurisdiction" />
+                <SelectValue placeholder="Select your business location" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="USA">USA</SelectItem>
-                <SelectItem value="EU">European Union (EU)</SelectItem>
-                <SelectItem value="Canada">Canada</SelectItem>
-                <SelectItem value="UK">United Kingdom</SelectItem>
-                <SelectItem value="Australia">Australia</SelectItem>
+                <SelectItem value="USA">USA (CCPA, COPPA)</SelectItem>
+                <SelectItem value="EU">European Union (GDPR)</SelectItem>
+                <SelectItem value="Canada">Canada (PIPEDA)</SelectItem>
+                <SelectItem value="UK">United Kingdom (UK GDPR)</SelectItem>
+                <SelectItem value="Australia">Australia (Privacy Act)</SelectItem>
               </SelectContent>
             </Select>
+            <p className="text-xs text-gray-500">
+              Where your business operates (affects which laws apply)
+            </p>
           </div>
           <div className="space-y-2">
-            <Label htmlFor="email">Contact Email</Label>
+            <Label htmlFor="email">Business Contact Email</Label>
             <Input
               id="email"
               name="email"
@@ -92,13 +98,16 @@ export const ComplianceForm = ({ formState, onFormChange, onSubmit }: Compliance
               onChange={onFormChange}
               required
             />
+            <p className="text-xs text-gray-500">
+              For privacy requests and compliance communications
+            </p>
           </div>
         </div>
         <div className="space-y-2">
-          <Label htmlFor="industry">Industry</Label>
+          <Label htmlFor="industry">Your Business Industry</Label>
           <Select onValueChange={handleIndustryChange} defaultValue={formState.industry} name="industry">
             <SelectTrigger>
-              <SelectValue placeholder="Select your industry" />
+              <SelectValue placeholder="What type of business do you run?" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="technology">Technology & Software</SelectItem>
@@ -119,9 +128,12 @@ export const ComplianceForm = ({ formState, onFormChange, onSubmit }: Compliance
               <SelectItem value="other">Other</SelectItem>
             </SelectContent>
           </Select>
+          <p className="text-xs text-gray-500">
+            Helps us customize compliance language for your sector
+          </p>
         </div>
         <Button type="submit" className="w-full !mt-8 bg-green-500 hover:bg-green-600 text-gray-900 font-bold">
-          Buy Now - $6.99
+          Protect My Business - $6.99 →
         </Button>
       </form>
     </motion.div>

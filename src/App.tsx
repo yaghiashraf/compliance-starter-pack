@@ -118,10 +118,10 @@ function App() {
               
               <div className="text-center mb-8">
                 <h1 className="text-3xl sm:text-4xl font-bold tracking-tight">
-                  Create Your Compliance Pack
+                  Protect Your Business in 2 Minutes
                 </h1>
                 <p className="mt-3 text-lg text-gray-400">
-                  Fill in your business details to generate your custom bundle
+                  Enter your details below to generate instant compliance protection
                 </p>
               </div>
 
