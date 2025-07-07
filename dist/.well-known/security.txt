@@ -1,0 +1,35 @@
+Contact: security@complianceservice.solutions
+Contact: https://github.com/yaghiashraf/compliance-starter-pack/security
+Expires: 2025-12-31T23:59:59.000Z
+Encryption: https://complianceservice.solutions/.well-known/pgp-key.txt
+Acknowledgments: https://complianceservice.solutions/security-acknowledgments
+Preferred-Languages: en
+Canonical: https://complianceservice.solutions/.well-known/security.txt
+Policy: https://complianceservice.solutions/security-policy
+
+# Security Policy for Compliance Service Solutions
+# 
+# We take security seriously and welcome security research.
+# Please report vulnerabilities responsibly.
+#
+# Scope: This security policy applies to:
+# - https://complianceservice.solutions
+# - Client-side code vulnerabilities
+# - Infrastructure security issues
+#
+# Out of scope:
+# - Social engineering attacks
+# - Physical security
+# - Third-party dependencies (report directly to vendors)
+#
+# Please do not:
+# - Access or modify user data
+# - Perform denial of service attacks
+# - Spam or phishing
+#
+# Response timeline:
+# - Initial response: 48 hours
+# - Triage: 5 business days
+# - Resolution: 30 business days (complex issues may take longer)
+#
+# Thank you for helping keep our users safe!

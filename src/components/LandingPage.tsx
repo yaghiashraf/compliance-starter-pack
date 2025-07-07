@@ -12,7 +12,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
     {
       icon: Shield,
       title: "GDPR & CCPA Ready",
-      description: "Templates covering major privacy laws including GDPR, CCPA, and more."
+      description: "Templates covering major privacy laws for EU, US, and international businesses."
     },
     {
       icon: Zap,
@@ -52,8 +52,8 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
   const painPoints = [
     {
       icon: DollarSign,
-      title: "GDPR Fines: Up to €20M",
-      description: "The EU has issued over €1.6 billion in GDPR fines since 2018. Even small businesses face penalties starting at €10,000.",
+      title: "GDPR Fines: Up to $25M",
+      description: "EU regulators have issued over $1.8 billion in GDPR fines since 2018. Even small businesses face penalties starting at $11,000.",
       severity: "critical"
     },
     {
@@ -90,12 +90,12 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
 
   const businessImpacts = [
     {
-      stat: "€1.6B+",
-      label: "GDPR fines issued since 2018",
-      description: "Average fine: €615K per business"
+      stat: "$1.8B+",
+      label: "GDPR + CCPA fines issued since 2018",
+      description: "Average fine: $685K per business"
     },
     {
-      stat: "2,847",
+      stat: "3,247",
       label: "businesses fined this year",
       description: "Missing policies = guaranteed fines"
     },
@@ -130,13 +130,13 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
             </div>
             
             <h1 className="text-5xl sm:text-7xl font-bold tracking-tight mb-6">
-              <span className="text-red-400">Avoid €20M GDPR Fines</span>
+              <span className="text-red-400">Avoid $25M+ Compliance Fines</span>
               <br />
-              <span className="text-white">Complete Compliance in 30 Seconds</span>
+              <span className="text-white">GDPR + CCPA Protection in 30 Seconds</span>
             </h1>
             
             <p className="text-xl sm:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-              The only compliance kit small businesses need. Privacy policies, cookie banners & accessibility tools.<br />
+              Complete GDPR & CCPA compliance kit for EU and US businesses. Privacy policies, cookie banners & accessibility tools.<br />
               <span className="text-green-400 font-semibold">$6.99 one-time</span> • 
               <span className="text-blue-400 font-semibold"> Copy-paste ready</span> • 
               <span className="text-purple-400 font-semibold"> Works immediately</span>
@@ -167,7 +167,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
               
               <div className="mt-4 bg-red-900/20 border border-red-500/30 rounded-lg p-3 max-w-md mx-auto">
                 <p className="text-red-300 text-sm font-medium">
-                  ⚠️ <strong>2,847 businesses</strong> were fined this year for missing compliance
+                  ⚠️ <strong>3,247 businesses</strong> hit with GDPR/CCPA fines this year
                 </p>
               </div>
             </div>
@@ -675,7 +675,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
                 answer: "No! Our files are lightweight (~35kB total) and optimized for performance. The cookie banner only loads when needed, and the accessibility widget is completely optional."
               },
               {
-                question: "Does it phone home or track users?",
+                question: "Does it send data to external servers or track users?",
                 answer: "Absolutely not. All files run entirely on your website with no external dependencies. We don't collect any data from your visitors or your website."
               },
               {

@@ -1,0 +1,33 @@
+/* TEAM */
+Developer: Yaghi Ashraf
+Location: Earth
+Contact: yaghiashraf [at] gmail.com
+
+/* THANKS */
+Claude AI: Development assistance
+Stripe: Payment processing
+Netlify: Hosting and deployment
+React: Frontend framework
+Vite: Build tool
+Tailwind CSS: Styling
+
+/* SITE */
+Last update: 2025-01-03
+Language: English
+Doctype: HTML5
+IDE: Cursor, VS Code
+Components: React, TypeScript, Tailwind CSS
+Security: CSP, HSTS, Security Headers
+Compliance: GDPR, CCPA, PIPEDA, UK GDPR, Australia Privacy Act
+
+/* PRIVACY */
+This website is designed with privacy in mind:
+- No tracking cookies
+- No analytics
+- No user data collection
+- Client-side processing only
+- Secure payment processing via Stripe
+
+/* SECURITY */
+Security contact: security@complianceservice.solutions
+Security policy: https://complianceservice.solutions/.well-known/security.txt

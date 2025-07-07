@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://complianceservice.solutions/sitemap.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Security policy
+# For security research and vulnerability disclosure
+# See: https://complianceservice.solutions/.well-known/security.txt

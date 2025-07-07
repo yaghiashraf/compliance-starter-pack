@@ -227,7 +227,7 @@ export function ComplianceScanner({ onGetStarted }: ComplianceScannerProps) {
                         These violations could trigger devastating penalties:
                       </p>
                       <ul className="text-red-200 space-y-1 text-sm mb-4">
-                        <li>• GDPR fines: €615K average (up to €20M maximum)</li>
+                        <li>• GDPR fines: $685K average (up to $25M maximum)</li>
                         <li>• CCPA violations: $7,500 each (adds up fast)</li>
                         <li>• ADA lawsuits: $15K average settlement + legal fees</li>
                         <li>• Customer exodus when word spreads</li>
