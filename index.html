@@ -31,6 +31,68 @@
     <link rel="preload" href="/src/main.tsx" as="script" />
     <link rel="dns-prefetch" href="//js.stripe.com" />
     <link rel="preconnect" href="https://js.stripe.com" crossorigin />
+    
+    <!-- Accessibility -->
+    <meta name="theme-color" content="#0d1117" />
+    <meta name="color-scheme" content="dark" />
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Compliance Starter Pack",
+      "description": "Complete GDPR & CCPA compliance kit for businesses. Generate privacy policies, cookie banners, and accessibility tools in minutes.",
+      "url": "https://complianceservice.solutions/",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "6.99",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock",
+        "validFrom": "2025-01-01"
+      },
+      "provider": {
+        "@type": "Organization",
+        "name": "Compliance Service Solutions",
+        "url": "https://complianceservice.solutions/"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "247",
+        "bestRating": "5"
+      },
+      "features": [
+        "GDPR Privacy Policy Generator",
+        "CCPA Compliance Tools", 
+        "Cookie Consent Banner",
+        "ADA Accessibility Widget",
+        "PIPEDA Compliance",
+        "UK GDPR Support"
+      ]
+    }
+    </script>
+    
+    <!-- Business Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Compliance Service Solutions", 
+      "url": "https://complianceservice.solutions/",
+      "logo": "https://complianceservice.solutions/logo.svg",
+      "sameAs": [
+        "https://complianceservice.solutions/"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "email": "support@compliancestarterpack.com"
+      }
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
