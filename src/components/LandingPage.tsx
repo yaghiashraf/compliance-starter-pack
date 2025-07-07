@@ -57,7 +57,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
   const painPoints = [
     {
       icon: DollarSign,
-      title: "GDPR Fines: Up to $25M",
+      title: "GDPR Fines: Up to $685K",
       description: "EU regulators have issued over $1.8 billion in GDPR fines since 2018. Even small businesses face penalties starting at $11,000.",
       severity: "critical"
     },
@@ -135,7 +135,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
             </div>
             
             <h1 className="text-5xl sm:text-7xl font-bold tracking-tight mb-6">
-              <span className="text-red-400">Avoid $25M+ Compliance Fines</span>
+              <span className="text-red-400">Avoid $685K+ Compliance Fines</span>
               <br />
               <span className="text-white">GDPR + CCPA Protection in 30 Seconds</span>
             </h1>
