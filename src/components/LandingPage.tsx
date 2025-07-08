@@ -184,57 +184,24 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
             </p>
             
             <div className="flex flex-col items-center mb-8">
-              {/* Pricing Tiers */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 max-w-2xl">
-                {/* Single Site */}
-                <div className="bg-[#161b22] border border-gray-700 rounded-xl p-6 text-center relative">
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-green-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                      MOST POPULAR
-                    </span>
-                  </div>
-                  <h3 className="text-lg font-semibold text-white mb-2">Single Site</h3>
-                  <div className="text-3xl font-bold text-white mb-2">
-                    <span className="text-lg text-gray-400 line-through mr-2">$29.99</span>
-                    <span className="text-green-400">$6.99</span>
-                  </div>
-                  <p className="text-gray-400 text-sm mb-4">Perfect for one website</p>
-                  <Button
-                    onClick={onGetStarted}
-                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white py-3 font-semibold min-h-[44px]"
-                  >
-                    Get Single Site Pack
-                  </Button>
+              <div className="mb-4 text-center">
+                <div className="text-4xl font-bold text-white mb-2">
+                  <span className="text-2xl text-gray-400 line-through mr-2">$29.99</span>
+                  <span className="text-green-400">$6.99</span>
                 </div>
-
-                {/* Agency Pack */}
-                <div className="bg-[#161b22] border border-purple-500 rounded-xl p-6 text-center relative">
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-purple-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                      AGENCY DEAL
-                    </span>
-                  </div>
-                  <h3 className="text-lg font-semibold text-white mb-2">Agency 10-Pack</h3>
-                  <div className="text-3xl font-bold text-white mb-2">
-                    <span className="text-lg text-gray-400 line-through mr-2">$69.99</span>
-                    <span className="text-purple-400">$19.99</span>
-                  </div>
-                  <p className="text-gray-400 text-sm mb-4">For multiple domains/clients</p>
-                  <Button
-                    onClick={onGetStarted}
-                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white py-3 font-semibold min-h-[44px]"
-                  >
-                    Get Agency Pack
-                  </Button>
-                </div>
-              </div>
-
-              <div className="text-center mb-4">
                 <div className="text-sm text-yellow-400 font-semibold mb-2">
                   Launch Special • Save 77% • Lawyer: $1,500+, Annual SaaS: $120/yr, Us: $6.99 once
                 </div>
                 <p className="text-gray-400">One-time payment • Download in 30 seconds • Zero monthly fees</p>
               </div>
+              
+              <Button
+                onClick={onGetStarted}
+                size="lg"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group mb-4 min-h-[44px]"
+              >
+                Get Your Compliance Pack - $6.99
+              </Button>
               
               <div className="flex items-center space-x-2 text-sm text-gray-400">
                 <CheckCircle className="w-4 h-4 text-green-400" />
