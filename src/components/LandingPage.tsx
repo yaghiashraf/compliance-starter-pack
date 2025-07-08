@@ -148,7 +148,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
             </div>
             
             <h1 className="text-5xl sm:text-7xl font-bold tracking-tight mb-6">
-              <span className="text-red-400">Avoid $685K+ Compliance Fines</span>
+              <span className="text-red-400">Avoid $50K+ Compliance Fines</span>
               <br />
               <span className="text-white">GDPR + CCPA Protection in 30 Seconds</span>
             </h1>
@@ -265,21 +265,21 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
                 author: "Sarah Chen",
                 role: "E-commerce Founder",
                 company: "TechStyle Boutique",
-                avatar: "SC"
+                avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face&auto=format&q=80"
               },
               {
                 quote: "Saved $3,500 in lawyer fees and got GDPR compliant in one afternoon. The cookie banner looks better than our old $200/month solution.",
                 author: "Marcus Rodriguez", 
                 role: "Marketing Director",
                 company: "Local Services Co",
-                avatar: "MR"
+                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face&auto=format&q=80"
               },
               {
                 quote: "Was quoted $5,000 by lawyers for compliance docs. This cost me $6.99 and took 8 minutes total. Absolutely no-brainer.",
                 author: "Jennifer Walsh",
                 role: "Startup CEO",
                 company: "Digital Agency",
-                avatar: "JW"
+                avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face&auto=format&q=80"
               }
             ].map((testimonial, index) => (
               <motion.div
@@ -301,9 +301,11 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
                 </blockquote>
                 
                 <div className="flex items-center">
-                  <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold text-sm mr-3">
-                    {testimonial.avatar}
-                  </div>
+                  <img 
+                    src={testimonial.avatar} 
+                    alt={testimonial.author}
+                    className="w-10 h-10 rounded-full mr-3 object-cover"
+                  />
                   <div>
                     <div className="font-semibold text-white text-sm">{testimonial.author}</div>
                     <div className="text-xs text-gray-400">{testimonial.role}</div>
@@ -602,7 +604,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
                 viewport={{ once: true }}
                 className="text-center"
               >
-                <div className="glass rounded-xl p-6 hover:bg-white/5 transition-all duration-300">
+                <div className="glass rounded-xl p-6 hover:bg-white/5 transition-all duration-300 h-full flex flex-col justify-between min-h-[180px]">
                   <div className="text-4xl sm:text-5xl font-bold gradient-text mb-2">
                     {impact.stat}
                   </div>
@@ -712,9 +714,6 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
             <div className="flex items-center space-x-2">
               <CheckCircle className="w-5 h-5 text-green-400" />
               <span className="text-sm text-gray-400">Instant download</span>
-            </div>
-            <div className="text-sm text-gray-500">
-              Card statement: "CSPACK*Compliance"
             </div>
           </motion.div>
         </div>
@@ -1432,7 +1431,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
               <Shield className="w-6 h-6 text-white" />
               <div>
                 <div className="text-white font-semibold">Compliance Starter Pack</div>
-                <div className="text-blue-200 text-sm">Protect your business from $685K+ fines</div>
+                <div className="text-blue-200 text-sm">Protect your business from $50K+ fines</div>
               </div>
             </div>
             <div className="flex items-center space-x-4">
