@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import { Shield, Download, FileCheck2, Zap, Globe, Lock, Star, CheckCircle, AlertTriangle, DollarSign, Scale, Gavel, Users, TrendingDown, Package, FileText, Code, BookOpen, Clock } from "lucide-react"
 import { Button } from "./ui/button"
 import { ComplianceScanner } from "./ComplianceScanner"
+import { AccessibilityDemo } from "./AccessibilityDemo"
 
 interface LandingPageProps {
   onGetStarted: () => void
@@ -410,26 +411,8 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              {/* Accessibility Demo */}
-              <div className="bg-[#0d1117] rounded-xl p-6 border border-gray-700 mb-6">
-                <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
-                  <Users className="w-5 h-5 text-blue-400 mr-2" />
-                  See Accessibility Widget in Action
-                </h3>
-                <div className="bg-gray-800 rounded-lg p-4 text-center">
-                  <div className="w-full h-48 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-600">
-                    <div className="text-center">
-                      <div className="text-4xl mb-2">🎥</div>
-                      <p className="text-gray-300 font-medium">Accessibility Demo</p>
-                      <p className="text-gray-500 text-sm">Font size, contrast, focus indicators</p>
-                    </div>
-                  </div>
-                </div>
-                <p className="text-gray-400 text-sm mt-3">
-                  Our accessibility widget instantly improves your site's compliance with ADA/WCAG guidelines. 
-                  Users can adjust font size, toggle high contrast mode, and use keyboard navigation.
-                </p>
-              </div>
+              {/* Working Accessibility Demo */}
+              <AccessibilityDemo />
 
               {[
                 {
