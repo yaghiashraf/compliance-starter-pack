@@ -365,7 +365,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
             {/* File Preview */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
