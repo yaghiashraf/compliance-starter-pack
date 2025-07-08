@@ -642,25 +642,28 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                quote: "Installed in 4 minutes. Lighthouse accessibility score went from 71→100. Avoided potential $50K ADA lawsuit.",
-                author: "Sarah Chen",
-                role: "E-commerce Founder",
-                company: "TechStyle Boutique ($2M revenue)",
-                rating: 5
+                quote: "Our law firm was spending $400/month on compliance software. This one-time purchase paid for itself instantly and works better than our expensive solution.",
+                author: "David Kim",
+                role: "Managing Partner",
+                company: "Kim & Associates Law",
+                rating: 5,
+                avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face&auto=format&q=80"
               },
               {
-                quote: "Saved $3,500 in lawyer fees and got GDPR compliant in one afternoon. The cookie banner looks better than our old $200/month solution.",
-                author: "Marcus Rodriguez", 
-                role: "Marketing Director",
-                company: "Local Services Co (SaaS)",
-                rating: 5
+                quote: "I run 6 client websites and was dreading the compliance audit. Got all sites compliant in under 2 hours. My clients are thrilled with the professional policies.",
+                author: "Rachel Thompson", 
+                role: "Web Developer",
+                company: "Freelance (8 years)",
+                rating: 5,
+                avatar: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=100&h=100&fit=crop&crop=face&auto=format&q=80"
               },
               {
-                quote: "Was quoted $5,000 by lawyers for compliance docs. This cost me $6.99 and took 8 minutes total. Absolutely no-brainer.",
-                author: "Jennifer Walsh",
-                role: "Startup CEO",
-                company: "Digital Agency (12 employees)",
-                rating: 5
+                quote: "Just launched my Shopify store and needed everything compliance-ready fast. The cookie banner integrates perfectly and the policies look more professional than my competitors.",
+                author: "Alex Rivera",
+                role: "Store Owner",
+                company: "Rivera Home Goods",
+                rating: 5,
+                avatar: "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?w=100&h=100&fit=crop&crop=face&auto=format&q=80"
               }
             ].map((testimonial, index) => (
               <motion.div
@@ -682,9 +685,11 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
                 </blockquote>
                 
                 <div className="flex items-center">
-                  <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold mr-3">
-                    {testimonial.author.split(' ').map(n => n[0]).join('')}
-                  </div>
+                  <img 
+                    src={testimonial.avatar} 
+                    alt={testimonial.author}
+                    className="w-10 h-10 rounded-full mr-3 object-cover"
+                  />
                   <div>
                     <div className="font-semibold text-white">{testimonial.author}</div>
                     <div className="text-sm text-gray-400">{testimonial.role}</div>
