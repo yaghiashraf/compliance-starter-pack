@@ -265,7 +265,7 @@ export function LandingPage({ onGetStarted }: LandingPageProps) {
                 author: "Sarah Chen",
                 role: "E-commerce Founder",
                 company: "TechStyle Boutique",
-                avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face&auto=format&q=80"
+                avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop&crop=face&auto=format&q=80"
               },
               {
                 quote: "Saved $3,500 in lawyer fees and got GDPR compliant in one afternoon. The cookie banner looks better than our old $200/month solution.",
