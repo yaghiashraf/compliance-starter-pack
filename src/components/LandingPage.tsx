@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import { useState, useEffect } from "react"
-import { Shield, Download, FileCheck2, Zap, Globe, Lock, ArrowRight, Star, CheckCircle, AlertTriangle, DollarSign, Scale, Gavel, Users, TrendingDown, Package, FileText, Code, BookOpen, Clock } from "lucide-react"
+import { Shield, Download, FileCheck2, Zap, Globe, Lock, Star, CheckCircle, AlertTriangle, DollarSign, Scale, Gavel, Users, TrendingDown, Package, FileText, Code, BookOpen, Clock } from "lucide-react"
 import { Button } from "./ui/button"
 import { ComplianceScanner } from "./ComplianceScanner"
 
