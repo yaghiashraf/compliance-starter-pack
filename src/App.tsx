@@ -8,6 +8,7 @@ import { CookieBanner } from "./components/CookieBanner";
 import { SimpleStripeTest } from "./components/SimpleStripeTest";
 import { PaymentDebug } from "./components/PaymentDebug";
 import { BuyButtonTest } from "./components/BuyButtonTest";
+import { PaymentSuccessTest } from "./components/PaymentSuccessTest";
 import { genZip } from "./utils/genZip";
 import { Progress } from "./components/ui/progress";
 import { motion, AnimatePresence } from "framer-motion";
@@ -44,18 +45,20 @@ function App() {
     const urlParams = new URLSearchParams(window.location.search)
     const sessionId = urlParams.get('session_id')
     const success = urlParams.get('success')
+    const paymentSuccess = urlParams.get('payment_success')
     const paymentIntent = urlParams.get('payment_intent')
     
     console.log("Payment return check:", {
       sessionId,
       success,
+      paymentSuccess,
       paymentIntent,
       allParams: Object.fromEntries(urlParams.entries()),
       currentUrl: window.location.href
     })
     
     // Function to handle successful payment
-    const handlePaymentComplete = () => {
+    const handlePaymentComplete = async () => {
       console.log("Payment success detected!")
       
       const formData = localStorage.getItem('compliance_form_data')
@@ -67,10 +70,23 @@ function App() {
       if (formData) {
         const parsedFormData = JSON.parse(formData)
         setFormState({ ...parsedFormData, email: email || parsedFormData.email })
-        setAppState("generating")  // Go directly to generating files
         
         // Clean up URL without reloading page
         window.history.replaceState({}, document.title, window.location.pathname)
+        
+        // Start generating files immediately
+        setAppState("generating")
+        setProgress(0)
+        setZipBlob(null)
+        
+        try {
+          const blob = await genZip({ ...parsedFormData, email: email || parsedFormData.email }, setProgress)
+          setZipBlob(blob)
+          setAppState("success")
+        } catch (error) {
+          console.error("Error generating files:", error)
+          setAppState("form")
+        }
       } else {
         console.error("No form data found in localStorage")
         setAppState("form")
@@ -78,7 +94,7 @@ function App() {
     }
     
     // Check for URL-based success (redirect from Stripe)
-    if (sessionId || success === 'true' || paymentIntent) {
+    if (sessionId || success === 'true' || paymentSuccess === 'true' || paymentIntent) {
       handlePaymentComplete()
     }
 
@@ -164,6 +180,8 @@ function App() {
           <PaymentDebug />
         ) : window.location.search.includes('buybutton') ? (
           <BuyButtonTest />
+        ) : window.location.search.includes('success') ? (
+          <PaymentSuccessTest />
         ) : (
           <SimpleStripeTest />
         )}
