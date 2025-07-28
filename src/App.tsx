@@ -8,7 +8,6 @@ import { CookieBanner } from "./components/CookieBanner";
 import { SimpleStripeTest } from "./components/SimpleStripeTest";
 import { PaymentDebug } from "./components/PaymentDebug";
 import { BuyButtonTest } from "./components/BuyButtonTest";
-import { StripeButtonFallback } from "./components/StripeButtonFallback";
 import { genZip } from "./utils/genZip";
 import { Progress } from "./components/ui/progress";
 import { motion, AnimatePresence } from "framer-motion";
