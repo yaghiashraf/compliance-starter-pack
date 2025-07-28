@@ -5,6 +5,7 @@ import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
 import { FormState } from "../App"
+import { StripeButtonFallback } from "./StripeButtonFallback"
 
 declare global {
   namespace JSX {
@@ -23,9 +24,12 @@ interface StripeBuyButtonProps {
   onPaymentSuccess: () => void
 }
 
+
 export function StripeBuyButton({ formState, onCancel, onPaymentSuccess }: StripeBuyButtonProps) {
   const [email, setEmail] = useState(formState.email || "")
   const [isReady, setIsReady] = useState(false)
+  const [error, setError] = useState("")
+  const [useFallback, setUseFallback] = useState(false)
 
   useEffect(() => {
     // Store form data for post-payment processing
@@ -42,16 +46,33 @@ export function StripeBuyButton({ formState, onCancel, onPaymentSuccess }: Strip
     }
 
     // Check if buy button script is loaded
+    let attempts = 0
+    const maxAttempts = 50 // 5 seconds max
+    
     const checkStripeReady = () => {
+      attempts++
+      console.log(`Checking Stripe Buy Button readiness (attempt ${attempts})`)
+      
       if (window.customElements && window.customElements.get('stripe-buy-button')) {
         setIsReady(true)
-        console.log("Stripe Buy Button is ready")
-      } else {
+        console.log("Stripe Buy Button is ready!")
+      } else if (attempts < maxAttempts) {
         setTimeout(checkStripeReady, 100)
+      } else {
+        console.error("Stripe Buy Button failed to load after 5 seconds")
+        setError("Payment system failed to load. Trying fallback method...")
+        setTimeout(() => setUseFallback(true), 2000)
       }
     }
 
-    checkStripeReady()
+    // Check if the script is already loaded
+    if (document.querySelector('script[src*="buy-button.js"]')) {
+      checkStripeReady()
+    } else {
+      console.error("Stripe Buy Button script not found in page")
+      setError("Payment script not loaded. Trying fallback method...")
+      setTimeout(() => setUseFallback(true), 2000)
+    }
 
     // Listen for payment events (if available)
     window.addEventListener('stripe-buy-button-success', handlePaymentSuccess)
@@ -72,6 +93,11 @@ export function StripeBuyButton({ formState, onCancel, onPaymentSuccess }: Strip
       }
     }
   }, [email])
+
+  // Show fallback component if needed
+  if (useFallback) {
+    return <StripeButtonFallback onBack={onCancel} />
+  }
 
   return (
     <div className="min-h-screen bg-[#0d1117] text-white flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
@@ -100,11 +126,11 @@ export function StripeBuyButton({ formState, onCancel, onPaymentSuccess }: Strip
             <h1 className="text-2xl font-bold mb-2">Secure Payment - Final Step</h1>
             <p className="text-gray-400">30 seconds to complete compliance protection</p>
             <div className="mt-3 flex items-center justify-center space-x-4 text-xs text-gray-500">
-              <span>🛡️ 1,200+ businesses protected</span>
+              <span>1,200+ businesses protected</span>
               <span>•</span>
-              <span>⚡ Instant download</span>
+              <span>Instant download</span>
               <span>•</span>
-              <span>🔒 Secure checkout</span>
+              <span>Secure checkout</span>
             </div>
           </div>
 
@@ -152,23 +178,46 @@ export function StripeBuyButton({ formState, onCancel, onPaymentSuccess }: Strip
           {/* Security Note */}
           <div className="flex items-center space-x-2 text-sm text-gray-400 bg-[#0d1117] p-3 rounded-lg mb-6">
             <Lock className="w-4 h-4 text-green-400" />
-            <span>🔒 Secured by Stripe • All major cards accepted • No stored data</span>
+            <span>Secured by Stripe • All major cards accepted • No stored data</span>
           </div>
 
           {/* Stripe Buy Button */}
           <div className="text-center">
-            {isReady ? (
-              <div className="stripe-buy-button-container">
-                <stripe-buy-button
-                  buy-button-id="buy_btn_1RpsBBA3gGBV3QMFA7zrc9VH"
-                  publishable-key="pk_live_51RY8WGA3gGBV3QMFoEn6vPBuicxVlV88vh9eLrKhnD56CAcMfVJfZmn46ba1XXJUcDUeJhJvRpQQ6oSPOG8zsKmB002qhoBlCI"
-                />
+            {error ? (
+              <div className="bg-red-900/20 border border-red-700 rounded-lg p-4 text-red-300 text-sm mb-4">
+                <p className="font-semibold mb-2">Payment System Error</p>
+                <p>{error}</p>
+                <div className="flex space-x-2 mt-3">
+                  <Button 
+                    onClick={() => window.location.reload()}
+                    className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 text-sm"
+                  >
+                    Refresh Page
+                  </Button>
+                  <Button 
+                    onClick={() => setUseFallback(true)}
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-sm"
+                  >
+                    Try Fallback
+                  </Button>
+                </div>
               </div>
             ) : (
-              <div className="flex items-center justify-center space-x-2 text-gray-400">
-                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                <span>Loading secure payment...</span>
-              </div>
+              <>
+                <div className="stripe-buy-button-container" style={{ minHeight: '50px' }}>
+                  <stripe-buy-button
+                    buy-button-id="buy_btn_1RpsBBA3gGBV3QMFA7zrc9VH"
+                    publishable-key="pk_live_51RY8WGA3gGBV3QMFoEn6vPBuicxVlV88vh9eLrKhnD56CAcMfVJfZmn46ba1XXJUcDUeJhJvRpQQ6oSPOG8zsKmB002qhoBlCI"
+                  />
+                </div>
+                
+                {!isReady && (
+                  <div className="flex items-center justify-center space-x-2 text-gray-400 mt-4">
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    <span>Loading secure payment...</span>
+                  </div>
+                )}
+              </>
             )}
           </div>
 
@@ -182,7 +231,7 @@ export function StripeBuyButton({ formState, onCancel, onPaymentSuccess }: Strip
         
         <div className="mt-6 text-center">
           <p className="text-xs text-gray-500">
-            🔒 Secured by Stripe • 💳 All major cards accepted • ⚡ Instant download • 🛡️ Used by 1,200+ businesses
+            Secured by Stripe • All major cards accepted • Instant download • Used by 1,200+ businesses
           </p>
         </div>
       </div>

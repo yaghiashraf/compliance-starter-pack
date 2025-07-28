@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stripe Buy Button Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+        .info { background-color: #d1ecf1; color: #0c5460; }
+        code {
+            background-color: #f8f9fa;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+    <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+</head>
+<body>
+    <h1>Stripe Buy Button Debug Test</h1>
+    
+    <div class="test-section">
+        <h2>Test Environment</h2>
+        <div id="environment-info">
+            <p><strong>URL:</strong> <span id="current-url"></span></p>
+            <p><strong>User Agent:</strong> <span id="user-agent"></span></p>
+            <p><strong>Protocol:</strong> <span id="protocol"></span></p>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Script Loading Status</h2>
+        <div id="script-status"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Stripe Buy Button Test</h2>
+        <p>This tests the same configuration used in the React app:</p>
+        <ul>
+            <li><strong>Buy Button ID:</strong> <code>buy_btn_1RpsBBA3gGBV3QMFA7zrc9VH</code></li>
+            <li><strong>Publishable Key:</strong> <code>pk_live_51RY8WGA3gGBV3QMFoEn6vPBuicxVlV88vh9eLrKhnD56CAcMfVJfZmn46ba1XXJUcDUeJhJvRpQQ6oSPOG8zsKmB002qhoBlCI</code></li>
+        </ul>
+        
+        <div style="border: 2px dashed #ccc; padding: 20px; margin: 20px 0; min-height: 100px;">
+            <p style="text-align: center; color: #666; margin-bottom: 20px;">Buy Button should appear below:</p>
+            <div id="buy-button-container">
+                <stripe-buy-button
+                    buy-button-id="buy_btn_1RpsBBA3gGBV3QMFA7zrc9VH"
+                    publishable-key="pk_live_51RY8WGA3gGBV3QMFoEn6vPBuicxVlV88vh9eLrKhnD56CAcMfVJfZmn46ba1XXJUcDUeJhJvRpQQ6oSPOG8zsKmB002qhoBlCI">
+                </stripe-buy-button>
+            </div>
+        </div>
+        
+        <div id="buy-button-status"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Console Logs</h2>
+        <p>Check your browser's developer console (F12) for any errors or additional information.</p>
+        <div id="console-logs"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Troubleshooting</h2>
+        <p>If you see a "sad page" icon or the button doesn't load:</p>
+        <ol>
+            <li>Check if the Buy Button ID exists in your Stripe Dashboard</li>
+            <li>Verify the publishable key matches your Stripe account</li>
+            <li>Ensure the Buy Button is active/published</li>
+            <li>Check for CORS or domain restrictions</li>
+            <li>Try in an incognito/private browsing window</li>
+        </ol>
+    </div>
+
+    <script>
+        // Populate environment info
+        document.getElementById('current-url').textContent = window.location.href;
+        document.getElementById('user-agent').textContent = navigator.userAgent;
+        document.getElementById('protocol').textContent = window.location.protocol;
+        
+        // Check script loading
+        function checkScriptStatus() {
+            const scriptElement = document.querySelector('script[src*="buy-button.js"]');
+            const statusDiv = document.getElementById('script-status');
+            
+            if (scriptElement) {
+                statusDiv.innerHTML = '<div class="status success">✅ Stripe Buy Button script loaded successfully</div>';
+                
+                // Check if custom element is ready
+                let attempts = 0;
+                const checkCustomElement = () => {
+                    attempts++;
+                    if (window.customElements && window.customElements.get('stripe-buy-button')) {
+                        document.getElementById('buy-button-status').innerHTML = 
+                            '<div class="status success">✅ Stripe Buy Button custom element is ready</div>';
+                        console.log('✅ Stripe Buy Button is ready');
+                    } else if (attempts < 50) {
+                        setTimeout(checkCustomElement, 100);
+                    } else {
+                        document.getElementById('buy-button-status').innerHTML = 
+                            '<div class="status error">❌ Stripe Buy Button custom element failed to load after 5 seconds</div>';
+                        console.error('❌ Stripe Buy Button custom element not available');
+                    }
+                };
+                
+                setTimeout(checkCustomElement, 100);
+            } else {
+                statusDiv.innerHTML = '<div class="status error">❌ Stripe Buy Button script not found</div>';
+            }
+        }
+        
+        // Listen for payment success
+        window.addEventListener('stripe-buy-button-success', function(event) {
+            console.log('Payment success:', event);
+            alert('Payment successful! Check console for details.');
+        });
+        
+        // Check script status after a short delay
+        setTimeout(checkScriptStatus, 500);
+        
+        // Log any errors
+        window.addEventListener('error', function(event) {
+            console.error('Page error:', event);
+            const logsDiv = document.getElementById('console-logs');
+            logsDiv.innerHTML += '<div class="status error">Error: ' + event.message + '</div>';
+        });
+    </script>
+</body>
+</html>
