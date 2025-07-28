@@ -6,6 +6,7 @@ import { PaymentLink } from "./components/PaymentLink";
 import { PaymentSuccess } from "./components/PaymentSuccess";
 import { CookieBanner } from "./components/CookieBanner";
 import { SimpleStripeTest } from "./components/SimpleStripeTest";
+import { PaymentDebug } from "./components/PaymentDebug";
 import { genZip } from "./utils/genZip";
 import { Progress } from "./components/ui/progress";
 import { motion, AnimatePresence } from "framer-motion";
@@ -41,11 +42,27 @@ function App() {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search)
     const sessionId = urlParams.get('session_id')
+    const success = urlParams.get('success')
+    const paymentIntent = urlParams.get('payment_intent')
     
-    if (sessionId) {
+    console.log("Payment return check:", {
+      sessionId,
+      success,
+      paymentIntent,
+      allParams: Object.fromEntries(urlParams.entries()),
+      currentUrl: window.location.href
+    })
+    
+    // Check for various Stripe return parameters
+    if (sessionId || success === 'true' || paymentIntent) {
+      console.log("Payment success detected!")
+      
       // User returned from successful Stripe payment
       const formData = localStorage.getItem('compliance_form_data')
       const email = localStorage.getItem('compliance_customer_email')
+      
+      console.log("Stored form data:", formData ? "Found" : "Missing")
+      console.log("Stored email:", email)
       
       if (formData) {
         const parsedFormData = JSON.parse(formData)
@@ -54,6 +71,10 @@ function App() {
         
         // Clean up URL without reloading page
         window.history.replaceState({}, document.title, window.location.pathname)
+      } else {
+        console.error("No form data found in localStorage")
+        // Fallback - go to form with message
+        setAppState("form")
       }
     }
   }, [])
@@ -115,13 +136,18 @@ function App() {
     setZipBlob(null);
   };
 
-  // Debug mode - show simple Stripe test
+  // Debug mode - show debug tools
   if (isDebugMode) {
     return (
       <div style={{ padding: '20px' }}>
-        <h1>Stripe Debug Mode</h1>
+        <h1>Debug Mode</h1>
         <p>URL: {window.location.href}</p>
-        <SimpleStripeTest />
+        
+        {window.location.search.includes('payment') ? (
+          <PaymentDebug />
+        ) : (
+          <SimpleStripeTest />
+        )}
       </div>
     );
   }

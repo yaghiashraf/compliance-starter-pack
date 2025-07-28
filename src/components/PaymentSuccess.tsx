@@ -12,30 +12,35 @@ export function PaymentSuccess({ onGenerateFiles, onBackToForm }: PaymentSuccess
   const [customerData, setCustomerData] = useState<any>(null)
 
   useEffect(() => {
-    // Check if user is returning from Stripe payment
-    const urlParams = new URLSearchParams(window.location.search)
-    const sessionId = urlParams.get('session_id')
+    console.log("PaymentSuccess component mounted")
     
-    if (sessionId) {
-      // User returned from successful Stripe payment
-      console.log("Payment successful, session ID:", sessionId)
+    // Retrieve stored form data
+    const formData = localStorage.getItem('compliance_form_data')
+    const email = localStorage.getItem('compliance_customer_email')
+    
+    console.log("PaymentSuccess - checking localStorage:", {
+      formData: formData ? "Found" : "Missing",
+      email: email || "Missing"
+    })
+    
+    if (formData) {
+      const parsedData = JSON.parse(formData)
+      setCustomerData({
+        ...parsedData,
+        email,
+        timestamp: new Date().toISOString()
+      })
       
-      // Retrieve stored form data
-      const formData = localStorage.getItem('compliance_form_data')
-      const email = localStorage.getItem('compliance_customer_email')
+      console.log("PaymentSuccess - customer data set:", parsedData)
       
-      if (formData) {
-        setCustomerData({
-          ...JSON.parse(formData),
-          email,
-          sessionId
-        })
-        
-        // Automatically start file generation
-        setTimeout(() => {
-          onGenerateFiles()
-        }, 2000)
-      }
+      // Automatically start file generation after 3 seconds
+      console.log("PaymentSuccess - will auto-generate files in 3 seconds")
+      setTimeout(() => {
+        console.log("PaymentSuccess - calling onGenerateFiles")
+        onGenerateFiles()
+      }, 3000)
+    } else {
+      console.error("PaymentSuccess - No form data found in localStorage")
     }
   }, [onGenerateFiles])
 

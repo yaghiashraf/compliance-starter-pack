@@ -19,7 +19,23 @@ export function PaymentLink({ formState, onCancel }: PaymentLinkProps) {
   const STRIPE_PAYMENT_LINK = "https://buy.stripe.com/aFa8wOb6r3d54TQ2Ljg3600"
 
   const handlePayment = () => {
+    if (!email.trim()) {
+      alert("Please enter your email address")
+      return
+    }
+    
     setIsRedirecting(true)
+    
+    // Store form data in localStorage so we can restore it after payment
+    const dataToStore = { ...formState, email }
+    console.log("PaymentLink - storing data:", dataToStore)
+    
+    localStorage.setItem('compliance_form_data', JSON.stringify(dataToStore))
+    localStorage.setItem('compliance_customer_email', email)
+    
+    // Verify storage worked
+    const storedData = localStorage.getItem('compliance_form_data')
+    console.log("PaymentLink - verification of stored data:", storedData ? "Success" : "Failed")
     
     // Add customer info to the payment link via URL parameters
     const paymentUrl = new URL(STRIPE_PAYMENT_LINK)
@@ -29,9 +45,7 @@ export function PaymentLink({ formState, onCancel }: PaymentLinkProps) {
       paymentUrl.searchParams.set('prefilled_email', email)
     }
     
-    // Store form data in localStorage so we can restore it after payment
-    localStorage.setItem('compliance_form_data', JSON.stringify(formState))
-    localStorage.setItem('compliance_customer_email', email)
+    console.log("PaymentLink - redirecting to:", paymentUrl.toString())
     
     // Redirect to Stripe Payment Link
     window.location.href = paymentUrl.toString()
