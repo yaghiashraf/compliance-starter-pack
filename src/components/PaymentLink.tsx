@@ -8,11 +8,10 @@ import { FormState } from "../App"
 
 interface PaymentLinkProps {
   formState: FormState
-  onPaymentSuccess: () => void
   onCancel: () => void
 }
 
-export function PaymentLink({ formState, onPaymentSuccess, onCancel }: PaymentLinkProps) {
+export function PaymentLink({ formState, onCancel }: PaymentLinkProps) {
   const [email, setEmail] = useState(formState.email || "")
   const [isRedirecting, setIsRedirecting] = useState(false)
 

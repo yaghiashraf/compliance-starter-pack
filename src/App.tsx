@@ -185,7 +185,6 @@ function App() {
         {appState === "payment" && (
           <PaymentLink
             formState={formState}
-            onPaymentSuccess={handlePaymentSuccess}
             onCancel={handlePaymentCancel}
           />
         )}
