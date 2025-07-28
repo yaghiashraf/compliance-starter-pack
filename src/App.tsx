@@ -4,6 +4,7 @@ import { SuccessModal } from "./components/SuccessModal";
 import { LandingPage } from "./components/LandingPage";
 import { CheckoutForm } from "./components/CheckoutForm";
 import { CookieBanner } from "./components/CookieBanner";
+import { SimpleStripeTest } from "./components/SimpleStripeTest";
 import { genZip } from "./utils/genZip";
 import { Progress } from "./components/ui/progress";
 import { motion, AnimatePresence } from "framer-motion";
@@ -31,6 +32,9 @@ function App() {
   const [appState, setAppState] = useState<AppState>("landing");
   const [progress, setProgress] = useState(0);
   const [zipBlob, setZipBlob] = useState<Blob | null>(null);
+
+  // Debug mode check
+  const isDebugMode = window.location.search.includes('debug=stripe') || window.location.pathname.includes('/debug');
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -88,6 +92,17 @@ function App() {
     setProgress(0);
     setZipBlob(null);
   };
+
+  // Debug mode - show simple Stripe test
+  if (isDebugMode) {
+    return (
+      <div style={{ padding: '20px' }}>
+        <h1>Stripe Debug Mode</h1>
+        <p>URL: {window.location.href}</p>
+        <SimpleStripeTest />
+      </div>
+    );
+  }
 
   if (appState === "landing") {
     return <LandingPage onGetStarted={handleGetStarted} />;

@@ -142,23 +142,13 @@ const CheckoutFormContent = ({ formState, onPaymentSuccess, onCancel }: Checkout
       base: {
         fontSize: "16px",
         color: "#ffffff",
-        backgroundColor: "#0d1117",
         fontFamily: "system-ui, sans-serif",
         fontWeight: "400",
         lineHeight: "24px",
         "::placeholder": {
-          color: "#6b7280",
+          color: "#9ca3af",
         },
-        ":focus": {
-          color: "#ffffff",
-        },
-        ":hover": {
-          color: "#ffffff",
-        },
-        ":-webkit-autofill": {
-          color: "#ffffff",
-        },
-        iconColor: "#6b7280",
+        iconColor: "#9ca3af",
       },
       complete: {
         color: "#ffffff",
@@ -166,7 +156,7 @@ const CheckoutFormContent = ({ formState, onPaymentSuccess, onCancel }: Checkout
       },
       empty: {
         color: "#ffffff",
-        iconColor: "#6b7280",
+        iconColor: "#9ca3af",
       },
       invalid: {
         color: "#ef4444",
@@ -175,6 +165,8 @@ const CheckoutFormContent = ({ formState, onPaymentSuccess, onCancel }: Checkout
     },
     hidePostalCode: true,
   }
+  
+  console.log("CardElement options:", cardElementOptions)
 
   return (
     <div className="min-h-screen bg-[#0d1117] text-white flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8">
@@ -257,7 +249,26 @@ const CheckoutFormContent = ({ formState, onPaymentSuccess, onCancel }: Checkout
               <Label>Card Details</Label>
               <div className="bg-[#0d1117] border border-gray-600 rounded-lg p-4 min-h-[50px] flex items-center">
                 {stripe && elements ? (
-                  <CardElement options={cardElementOptions} />
+                  <div className="w-full">
+                    <CardElement 
+                      options={cardElementOptions}
+                      onReady={() => {
+                        console.log("CardElement is ready!")
+                      }}
+                      onChange={(event) => {
+                        console.log("CardElement change:", event)
+                        if (event.error) {
+                          console.error("CardElement error:", event.error)
+                        }
+                      }}
+                      onFocus={() => {
+                        console.log("CardElement focused")
+                      }}
+                      onBlur={() => {
+                        console.log("CardElement blurred")
+                      }}
+                    />
+                  </div>
                 ) : (
                   <div className="text-gray-400 text-sm">
                     {error ? "Payment system error" : "Loading payment form..."}
