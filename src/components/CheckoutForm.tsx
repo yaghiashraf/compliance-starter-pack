@@ -8,7 +8,9 @@ import { Input } from "./ui/input"
 import { Label } from "./ui/label"
 import { FormState } from "../App"
 
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY!)
+const stripePromise = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY 
+  ? loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY)
+  : null
 
 interface CheckoutFormProps {
   formState: FormState
@@ -26,6 +28,12 @@ const CheckoutFormContent = ({ formState, onPaymentSuccess, onCancel }: Checkout
 
   // Create payment intent when component mounts
   useEffect(() => {
+    // Check if Stripe is properly configured
+    if (!import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY) {
+      setError("Payment system is not configured. Missing Stripe publishable key.")
+      return
+    }
+
     const createPaymentIntent = async () => {
       try {
         const response = await fetch("/.netlify/functions/create-payment-intent", {
@@ -43,10 +51,19 @@ const CheckoutFormContent = ({ formState, onPaymentSuccess, onCancel }: Checkout
           throw new Error("Failed to create payment intent")
         }
 
-        const { clientSecret } = await response.json()
-        setClientSecret(clientSecret)
+        const result = await response.json()
+        if (result.clientSecret) {
+          setClientSecret(result.clientSecret)
+        } else {
+          throw new Error(result.message || "No client secret returned")
+        }
       } catch (err) {
-        setError("Failed to initialize payment. Please try again.")
+        const errorMessage = err instanceof Error ? err.message : "Unknown error"
+        if (errorMessage.includes("configuration") || errorMessage.includes("configured")) {
+          setError("Payment system is not properly configured. Please contact support.")
+        } else {
+          setError("Failed to initialize payment. Please try again.")
+        }
         console.error("Payment intent creation failed:", err)
       }
     }

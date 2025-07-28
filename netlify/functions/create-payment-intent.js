@@ -25,6 +25,18 @@ exports.handler = async (event, context) => {
   }
 
   try {
+    // Check if Stripe is properly configured
+    if (!process.env.STRIPE_SECRET_KEY) {
+      return {
+        statusCode: 500,
+        headers,
+        body: JSON.stringify({ 
+          error: 'Payment system not configured',
+          message: 'Missing Stripe secret key configuration'
+        }),
+      };
+    }
+
     const { email, businessName } = JSON.parse(event.body);
 
     // Create payment intent
