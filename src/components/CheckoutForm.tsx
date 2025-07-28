@@ -8,9 +8,18 @@ import { Input } from "./ui/input"
 import { Label } from "./ui/label"
 import { FormState } from "../App"
 
+// Debug environment variable loading
+console.log("Environment check:", {
+  hasStripeKey: !!import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY,
+  keyPrefix: import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY?.substring(0, 7) || "NONE"
+})
+
 const stripePromise = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY 
-  ? loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY)
-  : null
+  ? loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY).catch(error => {
+      console.error("Failed to load Stripe:", error)
+      return null
+    })
+  : Promise.resolve(null)
 
 interface CheckoutFormProps {
   formState: FormState
@@ -26,11 +35,25 @@ const CheckoutFormContent = ({ formState, onPaymentSuccess, onCancel }: Checkout
   const [clientSecret, setClientSecret] = useState("")
   const [error, setError] = useState("")
 
+  // Debug Stripe loading
+  useEffect(() => {
+    console.log("Stripe instance:", stripe ? "LOADED" : "NOT LOADED")
+    console.log("Elements instance:", elements ? "LOADED" : "NOT LOADED")
+  }, [stripe, elements])
+
   // Create payment intent when component mounts
   useEffect(() => {
     // Check if Stripe is properly configured
-    if (!import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY) {
+    const publishableKey = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
+    console.log("Stripe publishable key:", publishableKey ? `${publishableKey.substring(0, 20)}...` : "MISSING")
+    
+    if (!publishableKey) {
       setError("Payment system is not configured. Missing Stripe publishable key.")
+      return
+    }
+
+    if (!publishableKey.startsWith('pk_')) {
+      setError("Invalid Stripe publishable key format. Key should start with 'pk_'.")
       return
     }
 
@@ -232,8 +255,14 @@ const CheckoutFormContent = ({ formState, onPaymentSuccess, onCancel }: Checkout
 
             <div className="space-y-2">
               <Label>Card Details</Label>
-              <div className="bg-[#0d1117] border border-gray-600 rounded-lg p-4">
-                <CardElement options={cardElementOptions} />
+              <div className="bg-[#0d1117] border border-gray-600 rounded-lg p-4 min-h-[50px] flex items-center">
+                {stripe && elements ? (
+                  <CardElement options={cardElementOptions} />
+                ) : (
+                  <div className="text-gray-400 text-sm">
+                    {error ? "Payment system error" : "Loading payment form..."}
+                  </div>
+                )}
               </div>
               <p className="text-xs text-gray-500">Enter your card number, expiry date, and CVC</p>
             </div>

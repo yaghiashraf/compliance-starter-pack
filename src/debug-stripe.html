@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stripe Debug Test</title>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <h1>Stripe Configuration Test</h1>
+    <div id="card-element" style="padding: 20px; border: 1px solid #ccc; margin: 20px 0;"></div>
+    <div id="messages"></div>
+
+    <script>
+        // This will help us test if Stripe is loading correctly
+        console.log("Testing Stripe loading...");
+        
+        // Test with your actual publishable key
+        const publishableKey = 'PASTE_YOUR_PUBLISHABLE_KEY_HERE'; // Replace this
+        
+        if (!publishableKey.startsWith('pk_')) {
+            document.getElementById('messages').innerHTML = '<p style="color: red;">Invalid publishable key format</p>';
+        } else {
+            const stripe = Stripe(publishableKey);
+            const elements = stripe.elements();
+            const cardElement = elements.create('card');
+            
+            cardElement.mount('#card-element');
+            
+            cardElement.on('ready', () => {
+                console.log('Stripe Elements is ready!');
+                document.getElementById('messages').innerHTML = '<p style="color: green;">✅ Stripe Elements loaded successfully!</p>';
+            });
+            
+            cardElement.on('error', (event) => {
+                console.error('Stripe Elements error:', event.error);
+                document.getElementById('messages').innerHTML = '<p style="color: red;">❌ Error: ' + event.error.message + '</p>';
+            });
+        }
+    </script>
+</body>
+</html>
