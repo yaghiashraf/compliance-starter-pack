@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ComplianceForm } from "./components/Form";
 import { SuccessModal } from "./components/SuccessModal";
 import { LandingPage } from "./components/LandingPage";
-import { CheckoutForm } from "./components/CheckoutForm";
+import { PaymentLink } from "./components/PaymentLink";
+import { PaymentSuccess } from "./components/PaymentSuccess";
 import { CookieBanner } from "./components/CookieBanner";
 import { SimpleStripeTest } from "./components/SimpleStripeTest";
 import { genZip } from "./utils/genZip";
@@ -19,7 +20,7 @@ export type FormState = {
   industry: string;
 };
 
-type AppState = "landing" | "form" | "payment" | "generating" | "success";
+type AppState = "landing" | "form" | "payment" | "payment_success" | "generating" | "success";
 
 function App() {
   const [formState, setFormState] = useState<FormState>({
@@ -35,6 +36,27 @@ function App() {
 
   // Debug mode check
   const isDebugMode = window.location.search.includes('debug=stripe') || window.location.pathname.includes('/debug');
+
+  // Check for payment success on app load
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const sessionId = urlParams.get('session_id')
+    
+    if (sessionId) {
+      // User returned from successful Stripe payment
+      const formData = localStorage.getItem('compliance_form_data')
+      const email = localStorage.getItem('compliance_customer_email')
+      
+      if (formData) {
+        const parsedFormData = JSON.parse(formData)
+        setFormState({ ...parsedFormData, email: email || parsedFormData.email })
+        setAppState("payment_success")
+        
+        // Clean up URL without reloading page
+        window.history.replaceState({}, document.title, window.location.pathname)
+      }
+    }
+  }, [])
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -161,10 +183,17 @@ function App() {
         )}
 
         {appState === "payment" && (
-          <CheckoutForm
+          <PaymentLink
             formState={formState}
             onPaymentSuccess={handlePaymentSuccess}
             onCancel={handlePaymentCancel}
+          />
+        )}
+
+        {appState === "payment_success" && (
+          <PaymentSuccess
+            onGenerateFiles={handlePaymentSuccess}
+            onBackToForm={() => setAppState("form")}
           />
         )}
 
