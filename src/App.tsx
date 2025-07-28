@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { ComplianceForm } from "./components/Form";
 import { SuccessModal } from "./components/SuccessModal";
 import { LandingPage } from "./components/LandingPage";
-import { StripeBuyButton } from "./components/StripeBuyButton";
+import { StripePaymentLink } from "./components/StripePaymentLink";
 import { PaymentSuccess } from "./components/PaymentSuccess";
 import { CookieBanner } from "./components/CookieBanner";
 import { SimpleStripeTest } from "./components/SimpleStripeTest";
@@ -228,10 +228,9 @@ function App() {
         )}
 
         {appState === "payment" && (
-          <StripeBuyButton
+          <StripePaymentLink
             formState={formState}
             onCancel={handlePaymentCancel}
-            onPaymentSuccess={handlePaymentSuccess}
           />
         )}
 
