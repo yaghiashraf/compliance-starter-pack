@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { ComplianceForm } from "./components/Form";
 import { SuccessModal } from "./components/SuccessModal";
 import { LandingPage } from "./components/LandingPage";
-import { PaymentLink } from "./components/PaymentLink";
+import { StripeBuyButton } from "./components/StripeBuyButton";
 import { PaymentSuccess } from "./components/PaymentSuccess";
 import { CookieBanner } from "./components/CookieBanner";
 import { SimpleStripeTest } from "./components/SimpleStripeTest";
@@ -38,7 +38,7 @@ function App() {
   // Debug mode check
   const isDebugMode = window.location.search.includes('debug=stripe') || window.location.pathname.includes('/debug');
 
-  // Check for payment success on app load
+  // Check for payment success on app load and listen for Stripe events
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search)
     const sessionId = urlParams.get('session_id')
@@ -53,11 +53,10 @@ function App() {
       currentUrl: window.location.href
     })
     
-    // Check for various Stripe return parameters
-    if (sessionId || success === 'true' || paymentIntent) {
+    // Function to handle successful payment
+    const handlePaymentComplete = () => {
       console.log("Payment success detected!")
       
-      // User returned from successful Stripe payment
       const formData = localStorage.getItem('compliance_form_data')
       const email = localStorage.getItem('compliance_customer_email')
       
@@ -67,15 +66,32 @@ function App() {
       if (formData) {
         const parsedFormData = JSON.parse(formData)
         setFormState({ ...parsedFormData, email: email || parsedFormData.email })
-        setAppState("payment_success")
+        setAppState("generating")  // Go directly to generating files
         
         // Clean up URL without reloading page
         window.history.replaceState({}, document.title, window.location.pathname)
       } else {
         console.error("No form data found in localStorage")
-        // Fallback - go to form with message
         setAppState("form")
       }
+    }
+    
+    // Check for URL-based success (redirect from Stripe)
+    if (sessionId || success === 'true' || paymentIntent) {
+      handlePaymentComplete()
+    }
+
+    // Listen for Stripe Buy Button success events
+    const handleStripeBuyButtonSuccess = (event: any) => {
+      console.log("Stripe Buy Button success event:", event)
+      handlePaymentComplete()
+    }
+
+    // Add event listener for buy button success
+    window.addEventListener('stripe-buy-button-success' as any, handleStripeBuyButtonSuccess)
+    
+    return () => {
+      window.removeEventListener('stripe-buy-button-success' as any, handleStripeBuyButtonSuccess)
     }
   }, [])
 
@@ -209,9 +225,10 @@ function App() {
         )}
 
         {appState === "payment" && (
-          <PaymentLink
+          <StripeBuyButton
             formState={formState}
             onCancel={handlePaymentCancel}
+            onPaymentSuccess={handlePaymentSuccess}
           />
         )}
 
