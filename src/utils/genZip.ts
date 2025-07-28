@@ -113,31 +113,31 @@ export const genZip = async (
     const policyHtml = genPolicyHtml(formData);
     zip.file("policy.html", policyHtml);
     setProgress(20);
-    await new Promise(res => setTimeout(res, 100));
+    await new Promise(res => setTimeout(res, 800));
 
     // 2. Generate Cookie Banner JS
     const cookieScript = genCookieScript(formData.businessName);
     zip.file("cookie.js", cookieScript);
     setProgress(40);
-    await new Promise(res => setTimeout(res, 100));
+    await new Promise(res => setTimeout(res, 800));
 
     // 3. Generate Accessibility JS
     const accessibilityScript = genAccessibilityScript();
     zip.file("accessibility.js", accessibilityScript);
     setProgress(60);
-    await new Promise(res => setTimeout(res, 100));
+    await new Promise(res => setTimeout(res, 800));
 
     // 4. Generate PDF
     const pdfBytes = await genPdf(policyHtml);
     zip.file("policy.pdf", pdfBytes);
     setProgress(80);
-    await new Promise(res => setTimeout(res, 100));
+    await new Promise(res => setTimeout(res, 800));
 
     // 5. Generate README
     const readmeHtml = genReadmeHtml(formData);
     zip.file("readme_install.html", readmeHtml);
     setProgress(95);
-    await new Promise(res => setTimeout(res, 100));
+    await new Promise(res => setTimeout(res, 600));
 
     // 6. Create ZIP file
     const zipBlob = await zip.generateAsync({ type: "blob" });
