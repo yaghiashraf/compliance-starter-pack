@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { CreditCard, Lock, ArrowLeft, Shield } from "lucide-react"
+import { CreditCard, Lock, ArrowLeft } from "lucide-react"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
